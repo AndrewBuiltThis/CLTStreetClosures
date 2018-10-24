@@ -1,0 +1,113 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="This application allows organizations to manage their street closures.")
+    meta(name="keywords" content="clt,webapp, street, road, closures, charlotte, CDOT")
+    meta(name="robots" content="index,follow")
+    meta(name="geo.position" content="35;-80")
+    meta(name="geo.placename" content="Charlotte")
+    meta(name="geo.region" content="USA North Carolina")
+    meta(name="author" content="Andrew Valenski")
+    title CLT Street Closures and Detours
+    // Calcite Bootstrap
+    link(rel='stylesheet' href='/stylesheets/css/main.css')
+    style.
+      html,
+      body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      }
+  body
+    // Navbar
+    .container-fluid.px-0
+      nav.navbar.navbar-dark.bg-dark
+        a.navbar-brand(href='/')
+          img.d-inline-block.align-top(src='/images/icons/road.svg', width='30', height='30', alt='')
+          |   CLT Street Closures and Detours
+        form.form-inline
+          a.btn.btn-outline-info.my-2.my-sm-0.mx-1(role='button' href='/')
+            img.d-inline-block.align-top(src='/images/icons/map-marker-alt.svg', width='30', height='30', alt='This is a link to the CLT Street Closures Application', title='CLT Street Closures Application', style='max-height:30px;')
+          a.btn.btn-outline-info.my-2.my-sm-0.mx-1(role='button' href='/closures')
+            img.d-inline-block.align-top(src='/images/icons/search-location.svg', width='30', height='30', alt='This is a link to the CLT Street Closure Search Application', title='CLT Street Closures Search', style='max-height:30px;')
+    .container.mt-3(style="margin-bottom:auto; background-color: rgba(0, 97, 155,0.1)")
+      .row.p-1(style='justify-content:center;')
+        h1
+          | Charlotte Department of Transportation
+      .row(style='justify-content:center;')
+        h4.danger
+          | Street Closure Notice 
+      .row(style='justify-content:center;')
+        h2
+          | #{closureName}		
+      .row(style='justify-content:center;')
+        h5
+          | Communicated: #{prettyDate(communicationDate)}
+      .row(style='justify-content:center;')
+        h5
+          | Closure Dates: #[strong #{prettyDate(startDate)}] to #[strong #{prettyDate(endDate)}]
+    .container.mt-4
+      .row
+        .col-6(style='align-self:center;')
+          image(src=webMapUrl, title='Web Map of the Street Closure', alt='')
+        .col-6
+          .row(style='justify-content:center;')
+            h4.avenir-bold
+              | More Information
+          .row
+            p.font-size-0
+              | #{closureName} #{closureDescription} will close on #{prettyDate(startDate)} at #{closureStartTime} #{closureStartAMPM} and will re-open on #{prettyDate(endDate)} at #{closureEndTime} #{closureEndAMPM}. 
+            p.font-size--3
+              | &nbsp;
+            p.font-size-0
+              | #{altRoute} This closure is necessary for #{additionalInfo}
+      .row.mt-3(style='justify-content:center;')
+        p.font-size-0.text-rule
+          | This closure will affect traffic traveling  #{closureDirection}. Local access to residences and businesses will be maintained. #{cats}.
+      .container.mt-2
+        .row
+          i.font-size--2
+            | Weather and unforeseen circumstances occasionally prevent work from being completed as scheduled, and make it unsafe to reopen lanes or streets when planned. When this occurs, City traffic engineers work directly with other City staff and contractors to resolve the situation as quickly as possible and reduce impacts to the traveling public.
+          i.font-size--3
+            | &nbsp;
+          i.font-size--2
+            | Pedestrians walking near work zone areas should be alert, cautious and allow extra traveling time. It is advised they cross at signalized intersections, use pedestrian walk signals where available and abide by detour signage.
+          i.font-size--3
+            | &nbsp;
+          i.font-size--2
+            | Motorists traveling through work zone areas should be alert and extra cautious. Drivers should get in the correct lane well in advance and constantly be on the lookout for vehicles merging into adjacent travel lanes as they approach a work zone. Drivers should double their following distance.
+        .row
+          p.font-size--2
+            | For additional information about this closure, contact #{contact}
+          br
+          p.font-size--2
+            | For more information about CDOT, contact Judy Dellert-O'Keef, CDOT Community Engagement Manager, at 704-432-0105 or 
+            a(href='mailto:jdellert-okeef@charlottenc.gov?subject=Question / Feedback about Street Closures' target='_blank') via her email.	  
+    .container-fluid.px-0
+      nav.navbar.navbar-dark.bg-dark
+        a.navbar-brand(href='https://charlottenc.gov/Transportation/Pages/default.aspx' target='_blank')
+          img.d-inline-block.align-top(src='/images/icons/university.svg', width='30', height='30', alt='', title='', style='max-height:30px;')
+          |   CDOT 
+        span.navbar-text.font-size--3.d-none.d-sm-none.d-md-none.d-lg-block
+          | You can view all current closures on the  
+          a(href='/', title='CLT Street Closure Application', alt='This is a link to the CLT Street Closure Application') CLT Street Closure Application 
+          |  or with the 
+          a(href='/closures', title='CLT Street Closure Searching Application', alt='This is a link to the CLT Street Closure Search Application') CLT Street Closure Page.
+        form.form-inline
+          a.btn.btn-outline-info.my-2.my-sm-0.mx-1(role='button' href='https://www.facebook.com/CLTtransportation' target='_blank')
+            img.d-inline-block.align-top(src='/images/icons/twitter.svg', width='30', height='30', alt='', title='', style='max-height:30px;')
+          a.btn.btn-outline-info.my-2.my-sm-0.mx-1(role='button' href='https://twitter.com/CharlotteDOT' target='_blank')
+            img.d-inline-block.align-top(src='/images/icons/facebook-f.svg', width='30', height='30', alt='', title='', style='max-height:30px;')
+
+-function prettyDate(dateString){
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -return m+' '+d+' '+y;
+-}
+

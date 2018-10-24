@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>CLT Street Closures and Detours Editor</title>
+  <!-- Calcite Bootstrap-->
+  <link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.8.css">
+  <!-- Calcite Maps-->
+  <link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.8.css">
+  <!-- ArcGIS JS 4-->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+   .editBody-container {
+      background: #fff;
+      font-family: "Avenir Next W00", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.5em;
+      overflow: auto;
+      padding: 12px 15px;
+      width: 300px;
+    }
+
+    .edit-button:hover,
+    .edit-button:focus {
+      background-color: #e4e4e4;
+    }
+
+    .inputInfo {
+      font-size: 12px;
+      height: 32px;
+      margin-bottom: 6px;
+      padding: 0 6px;
+      width: 100%;
+    }
+
+    .list-heading {
+      font-weight: normal;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #323232;
+    }
+
+    .edit-button {
+      font-size: 14px;
+      height: 32px;
+      margin-top: 10px;
+      width: 40%;
+      background-color: transparent;
+      border: 1px solid #0079c1;
+      color: #0079c1;
+    }
+
+    .or-wrap {
+      background-color: #e0e0e0;
+      height: 1px;
+      margin: 2em 0;
+      overflow: visible;
+    }
+
+    .or-text {
+      background: #fff;
+      line-height: 0;
+      padding: 0 1em;
+      position: relative;
+      top: -.75em;
+    }
+
+    input:invalid {
+      border: 1px solid red;
+    }
+
+    input:valid {
+      border: 1px solid green;
+    }
+
+    /* override default style */
+    .esri-feature-form {
+      background: #fff;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body class="calcite-maps calcite-nav-top">
+    <div id="editBody" class="editBody-container">
+      <div id="homeContainer" style="display:block;">
+        <div id="addFeatureDiv">
+          <h3 class="list-heading">Closures and Detours</h3>
+          <ul style="font-size: 13px; padding-left: 1.5em;">
+            <li>To create a new closure, click the 'New Closure' button.</li>
+            <li>To create a new closure, click the 'Add Detour' button.</li>
+            <li>Then follow the instructions</li>
+          </ul>
+          <div style="text-align:center;">
+            <input type="button" class="edit-button" value="New Closure" id="newClosureButton">
+            <input type="button" class="edit-button" value="New Detour" id="newDetourButton">
+          </div>
+          </div>
+    
+        <div id="updateInstructionsBody" style="text-align:center">
+          <p class="or-wrap">
+            <span class="or-text">Or</span>
+          </p>
+          <p>To edit an existing closure or detour, click the 'Edit Records' button.</p>
+          <input type="button" class="edit-button" value="Edit Records" id="editRecordsButton">
+        </div>
+      </div>
+
+      <!-- New Closure Section -->
+        <!-- Create Feature Section-->
+        <div id="newClosureContainer" style="display:none;">
+            <div id="addFeatureDiv">
+              <input type="button" class="edit-button" value="Take Me Back" id="returnHomeButton">
+              <h3 class="list-heading">Create a New Closure</h3>
+              <p>To create a new closure, click on the Draw button and draw your road segment on the map. Double click to finish. Once your drawing is finished, a form will appear here. </p>
+            </div>
+            <div id="updateInstructionDiv" style="text-align:center">
+              <p class="or-wrap">
+                <span class="or-text">Begin</span>
+              </p>
+              <div id="line-button" class="esri-widget esri-widget--button esri-interactive esri-component" title="Draw polyline" style="display: inline-block;">
+                <span class="esri-icon-polyline" style="vertical-align:middle;"></span>
+              </div>
+              <div id="reset-button" class="esri-widget esri-widget--button esri-interactive esri-component" title="Clear Drawing" style="display:inline-block;">
+                <span class="esri-icon-trash" style="vertical-align:middle;"></span>
+              </div>
+            </div>
+        </div>
+        <!-- Edit Attributes Section -->
+        <div id="newClosureFormContainer" style="display:none">
+            <div id="newClosureForm">
+            </div>
+            <div style="text-align:center;">
+                <input type="button" class="edit-button" value="Submit Record" id="submitNewClosureButton">
+                <input type="button" class="edit-button" value="Exit" id="exitNewClosureButton">
+            </div>
+        </div>
+        <!-- Result Section -->
+
+    <!-- New Detour Section -->
+      <!-- Create Feature Section-->
+      <div id="newDetourContainer" style="display:none;">
+          <div id="addFeatureDiv">
+            <input type="button" class="edit-button" value="Take Me Back" id="returnHomeButtonTwo">
+            <h3 class="list-heading">Create a New Closure</h3>
+            <p>To create a new closure, click on the Draw button and draw your road segment on the map. Double click to finish. Once your drawing is finished, a form will appear here. </p>
+          </div>
+          <div id="updateInstructionDiv" style="text-align:center">
+            <p class="or-wrap">
+              <span class="or-text">Begin</span>
+            </p>
+            <div id="line-button" class="esri-widget esri-widget--button esri-interactive esri-component" title="Draw polyline" style="display: inline-block;">
+              <span class="esri-icon-polyline" style="vertical-align:middle;"></span>
+            </div>
+            <div id="reset-button" class="esri-widget esri-widget--button esri-interactive esri-component" title="Clear Drawing" style="display:inline-block;">
+              <span class="esri-icon-trash" style="vertical-align:middle;"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Edit Attributes Section -->
+        <!-- Result Section -->
+
+      <!-- Edit Existing Closures / Detours -->
+        <!-- Select Features Section -->
+        <!-- Edit Features Section -->
+        <!-- Result Section-->
+    
+        <div id="updateFeatureBody" style="display:none; margin-top: 1em;">
+          <h3 class="list-heading">Modify the Record</h3>
+          <h5 class="list-heading">Then click 'Save Edits' or 'Delete Record.'</h5>
+    
+          <div id="attributeArea">
+            <div id="formDiv"></div>
+            <input type="button" class="edit-button" value="Save Edits"
+              id="saveEditsButton">
+          </div>
+    
+          <div id="deleteArea">
+            <input type="button" class="edit-button" value="Delete Record" id="deleteRecordButton">
+          </div>
+        </div>
+      </div>
+
+  <!-- Navbar-->
+  <nav class="navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark">
+    <!-- Menu-->
+    <div class="dropdown calcite-dropdown calcite-text-dark calcite-bg-light" role="presentation"><a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="calcite-dropdown-toggle"><span class="sr-only">Toggle dropdown menu</span><span></span><span></span><span></span><span></span></div>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a id="aboutButton" role="button" data-toggle="modal" data-target="#aboutModal" aria-haspopup="true"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+        <li><a id="contactModal" role="button" data-toggle="modal" data-target="#contactModal" aria-haspopup="true"><span class="glyphicon glyphicon glyphicon-comment"></span> Help</a></li>
+      </ul>
+    </div>
+    <!-- Title-->
+    <div class="calcite-title calcite-overflow-hidden"><span class="calcite-title-main">CLT Road Closures and Detours Editor</span><span class="calcite-title-divider hidden-xs"></span><a href="/explore" target="_blank"><span class="glyphicon glyphicon-th-list" style="color:#FFF;"></span></a><span class="calcite-title-divider hidden-xs"></span><a href="/admin" target="_blank"><span class="glyphicon glyphicon-briefcase" style="color:#FFF;"></span></a><span class="calcite-title-divider hidden-xs"></span><span class="calcite-title-sub hidden-xs">Plan your commute with ease</span></div>
+    <!-- Nav-->
+    <ul class="nav navbar-nav calcite-nav">
+      <li>
+        <div class="calcite-navbar-search calcite-search-expander">
+          <div id="searchWidgetDiv"></div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- Map-->
+  <div class="calcite-map calcite-map-absolute">
+    <div class="tab-content" id="tabContainer">
+      <div class="tab-pane fade in active" id="mapTab" role="tabpanel">
+        <div id="mapViewDiv"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Modal-->
+  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="aboutModalTitle">Welcome to CLT Road Closures and Detours</h3>
+        </div>
+        <div class="modal-body">
+          <p class="lead">This application allows residents, vistors and busineses get the most out of the travel in the Queen City.</p>
+          <p>It's no secret that Charlotte is a changing, growing and historic City. While these traits make Charlotte the City that we all know and love, it does mean that the folks who work for the Charlotte Department of Transportation (CDOT) are kept quite busy.</p>
+          <p>Between the ongoing construction projects, continued efforts to upgrade the City's existing infrastructure and the nonstop event schedule, roads will ocassionally need to be partially or completely closed. <br><br> To best serve the City of Charlotte, we want to make this information readily available so you can <b>make better decisions,</b><b>avoid frustration</b> and <b>get your questions answered</b>.</p>
+          <p>Thank you for visiting our application and be sure to check out its sister application, <a href="" target="">CLT Closure Reporter</a>, for more information.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="button" data-dismiss="modal">I'm Ready to Explore</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact Modal-->
+  <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="aboutModalTitle">We'd Love to Hear From You</h3>
+        </div>
+        <div class="modal-body">
+          <p class="lead">Looking for answers? Have some suggestions? Need some help? We've got you covered.</p>
+          <p>You can reach out to the City of Charlotte's Department of Transportation in many ways, each of which is a great option.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="button" data-dismiss="modal">Thanks! I'm Done Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Javascript Section-->
+  <script type="text/javascript">
+    var dojoConfig = {
+      packages: [{
+          name: "bootstrap",
+          location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
+        },
+        {
+          name: "calcite-maps",
+          location: "https://esri.github.io/calcite-maps/dist/js/dojo"
+        }
+      ]
+    };
+  </script>
+  <!-- ArcGIS JS 4-->
+  <script src="https://js.arcgis.com/4.9/"></script>
+  <script>
+    var app;
+    require([
+      // Esri
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/PopupTemplate",
+      "esri/layers/FeatureLayer",
+      "esri/widgets/Search",
+      "esri/widgets/Home",
+      "esri/widgets/Zoom",
+      "esri/widgets/Expand",
+      "esri/widgets/FeatureForm",
+      "esri/views/2d/draw/Draw",
+      "esri/Graphic",
+
+      // Calcite Maps
+      "calcite-maps/calcitemaps-v0.8",
+
+      // Calcite Maps ArcGIS Support
+      "calcite-maps/calcitemaps-arcgis-support-v0.8",
+
+      // Bootstrap
+      "bootstrap/Collapse",
+      "bootstrap/Dropdown",
+      "bootstrap/Tab",
+      "bootstrap/Modal",
+
+      // Can use @dojo shim for Array.from for IE11
+      "@dojo/framework/shim/array"
+    ], function(Map, MapView, PopupTemplate, FeatureLayer, Search, Home, Zoom, Expand, FeatureForm, Draw, Graphic,
+      CalciteMaps, CalciteMapsArcGIS) {
+
+       let closureForm;
+
+      // App
+        app = {
+        center: [-80.84, 35.225],
+        scale: 100000,
+        basemap: "gray",
+        viewPadding: {
+          top: 50,
+          bottom: 0
+        },
+        uiComponents: [],
+        mapView: null,
+        containerMap: "mapViewDiv",
+        searchWidget: null
+      };
+      
+      // Map
+        const map = new Map({
+          basemap: app.basemap
+        });
+
+      // Define Map view
+        app.mapView = new MapView({
+        container: app.containerMap,
+        map: map,
+        center: app.center,
+        scale: app.scale,
+        padding: app.viewPadding,
+        ui: {
+          components: app.uiComponents
+        }
+      });
+   
+      // Closures Layer
+        // Closures Popup Template
+          const closurePopupTemplate = {
+        title: "{ClosureType} Closure on {BLOCKNM}",
+        content: [{
+            type: "text",
+            text: "The closure {LOCDEC} is currently {ACTIVE:activeEvaluation}." + " The closure was communicated on {DateCommunicated} and starts on <b>{STARTDATE} at {StartHour} {StartAMPM}</b> and continues until <b> {ENDDATE} at {EndHour} {EndAMPM}</b>.<br /><br /> This will affect traffic traveling {DIRECTION}" + " {ALTROUTE}" + " {CATS}." + " More information on this closure can be found below."
+          },
+          {
+            type: "fields",
+            fieldInfos: [{
+                fieldName: "ResponsibleDepartment",
+                label: "Responsible Department: ",
+                visible: true
+              },
+              {
+                fieldName: "COMMENT",
+                label: "Additional Closure Notes: ",
+                visible: true
+              },
+              {
+                fieldName: "CONTACT",
+                label: "For more info, contact",
+                visible: true,
+                format: {
+                  digitSeparator: true,
+                  places: 0
+                }
+              }
+            ]
+          }
+        ]
+      };
+      
+        // Closure Function
+          activeEvaluation = function(value) {
+        if (value.toUpperCase() == 'YES') {
+          return '<b>active</b>';
+        } else {
+          return '<b>inactive</b>'
+        }
+      };
+        
+        // Closure Feature Layer
+          const closureFeatureLayer = new FeatureLayer({
+            url: "https://gis.charlottenc.gov/arcgis/rest/services/CDOT/StreetClosuresAndDetours/MapServer/0",
+            //url: "https://gis.charlottenc.gov/arcgis/rest/services/SECURE/StreetClosuresAndDetoursEDIT/FeatureServer/0",
+            outFields: ["*"],
+            popupTemplate: closurePopupTemplate,
+            id : "streetClosures"
+          });
+        
+        // Add Feature Layer to Map
+          map.add(closureFeatureLayer);
+      
+      // Detours Layer
+        // Detours Popup Template
+          const detourPopupTemplate = {
+        title: "Detour at {BLOCKNM}",
+        content: [{
+            type: "text",
+            text: "The detour at {BLOCKNM} starts at <b>{STARTDATE}</b> and will continue until <b>{ENDDATE}</b>." + " More information on the detour can be found below."
+          },
+          {
+            type: "fields",
+            fieldInfos: [{
+              fieldName: "COMMENT",
+              label: "Detour Notes:",
+              visible: true
+            }]
+          }
+        ]
+      };
+      
+        // Detours Feature Layer
+          const detourFeatureLayer = new FeatureLayer({
+           url: "https://gis.charlottenc.gov/arcgis/rest/services/CDOT/StreetClosuresAndDetours/MapServer/1",
+           //url: "https://gis.charlottenc.gov/arcgis/rest/services/SECURE/StreetClosuresAndDetoursEDIT/FeatureServer/1",
+           outFields: ["*"],
+           popupTemplate: detourPopupTemplate,
+           id : "streetDetours"
+        });
+      
+        // Add Feature Layer to Map
+          map.add(detourFeatureLayer);
+    
+    // Create the search widget and add it to the navbar instead of view
+      app.searchWidget = new Search({
+        view: app.mapView
+      }, "searchWidgetDiv");
+        CalciteMapsArcGIS.setSearchExpandEvents(app.searchWidget);
+
+    // Create the Home widget and add it to the top-left of our Map View
+      const home = new Home({
+        view: app.mapView
+      });
+        app.mapView.ui.add(home, "top-left");
+    
+    // Create the zoom widget and add it to the top-left of our Map View
+      const zoom = new Zoom({
+        view: app.mapView
+      });
+        app.mapView.ui.add(zoom, "top-left");
+
+    // Create the the Expand widget and add it to the top-left of our Map View
+      const sampleInstructions = document.createElement("div");
+        sampleInstructions.style.padding = "10px";
+        sampleInstructions.style.backgroundColor = "white";
+        sampleInstructions.style.width = "300px";
+        sampleInstructions.innerHTML = [
+        "<b>Hello, Friend! I'm here to help.</b> </br> </br> This application is intended for residents, vistors and organizations to get accurate, accessable and useful information about Road Closures and Detours in Charlotte, North Carolina.<br /> <br /> The app is fairly straight-forward, allowing you to visualize the current road closures and detours in your area, as well as get some information regarding those activities by clicking on the road or closure you are interested in. <br /> <br /> You can also get information on the current traffic conditions in Charlotte, which might be useful for planning purposes as well. <br /> <br /> This application is complimented by its sister application which allows more detailed searching and information, which can be found <a href='' target=''>right here!</a> <br /> <br /> If you have any questions, please don't hesitate to reach out to the Charlotte Department of Transportation "
+      ].join(" ");
+      const instructionsExpand = new Expand({
+        expandIconClass: "esri-icon-question",
+        expandTooltip: "How to use this sample",
+        view: app.mapView,
+        content: sampleInstructions
+      });
+      app.mapView.ui.add(instructionsExpand, "top-left");
+
+    // Create the the Expand widget and add it to the top-left of our Map View
+      const editExpand = new Expand({
+        expandIconClass: "esri-icon-edit",
+        expandTooltip: "Click to Open the Editing Interface",
+        expanded: true,
+        view: app.mapView,
+        content: editBody
+      });
+      app.mapView.ui.add(editExpand, "top-right");
+    
+    // Set view padding for widgets based on navbar position
+      function setViewPadding(layout) {
+        let padding, uiPadding;
+        // Top
+        if (layout === "calcite-nav-top") {
+          padding = {
+            padding: {
+              top: 50,
+              bottom: 0
+            }
+          };
+          uiPadding = {
+            padding: {
+              top: 15,
+              right: 15,
+              bottom: 30,
+              left: 15
+            }
+          };
+        } else { // Bottom
+          padding = {
+            padding: {
+              top: 0,
+              bottom: 50
+            }
+          };
+          uiPadding = {
+            padding: {
+              top: 30,
+              right: 15,
+              bottom: 15,
+              left: 15
+            }
+          };
+        }
+        app.mapView.set(padding);
+        app.mapView.ui.set(uiPadding);
+      };
+
+//----------------- END OF SECTION TO GET THE APP LOADED AND HAPPY ------------------//
+
+//----------------- BEGINNING OF FUNCTIONAL SECTIONS --------------------------------//
+
+  // Create JavaScript objects of all of the div containers 
+    var homeContainer = document.getElementById("homeContainer");
+    var newClosureContainer = document.getElementById("newClosureContainer");
+    var newClosureFormContainer = document.getElementById("newClosureFormContainer");
+    var newDetourContainer = document.getElementById("newDetourContainer");
+
+  // Create Routing Logic between buttons
+    document.getElementById("newClosureButton").onclick = function (){
+      homeContainer.style.display = 'none';
+      newClosureContainer.style.display = 'block';
+    };
+    document.getElementById("newDetourButton").onclick = function (){
+      newDetourContainer.style.display = 'block';
+      homeContainer.style.display = 'none';
+    };
+    document.getElementById("returnHomeButton").onclick = function(){
+      newClosureContainer.style.display = 'none';
+      homeContainer.style.display = 'block';
+    }
+    document.getElementById("returnHomeButtonTwo").onclick = function(){
+      newDetourContainer.style.display = 'none';
+      homeContainer.style.display = 'block';
+    }
+    document.getElementById("exitNewClosureButton").onclick = function(){
+      newClosureContainer.style.display = 'none';
+      newClosureFormContainer.style.display = 'none';
+      homeContainer.style.display = 'block';
+    }
+
+  //---------------- BEGINNING OF DRAWING / GRAPHIC SECTION -------------------------//
+
+    // Define constant draw variable 
+      const draw = new Draw({
+        view: app.mapView
+      });
+
+    // Define onClick function for the 'line-button' to allow users to draw graphics
+      document.getElementById("line-button").onclick = function() {
+        app.mapView.graphics.removeAll();
+
+      // creates and returns an instance of PolyLineDrawAction
+        const action = draw.create("polyline");
+
+      // focus the view to activate keyboard shortcuts for sketching
+        app.mapView.focus();
+
+      // listen polylineDrawAction events to give immediate visual feedback
+      // to users as the line is being drawn on the view.
+        action.on("vertex-add", updateVertices);
+        action.on("cursor-update", updateVertices);
+        action.on("draw-complete", completeVertices);
+      }
+
+      // Initiates secondary step
+        function updateVertices(event) {
+          // create a polyline from returned vertices
+          const result = createGraphic(event);
+        }
+
+      // create a new graphic presenting the polyline that is being drawn on the view
+        function createGraphic(event) {
+          const vertices = event.vertices;
+          app.mapView.graphics.removeAll();
+
+        // a graphic representing the polyline that is being drawn
+          const graphic = new Graphic({
+            geometry: {
+              type: "polyline",
+              paths: vertices,
+              spatialReference: app.mapView.spatialReference
+            },
+            symbol: {
+              type: "simple-line", // autocasts as new SimpleFillSymbol
+              color: [4, 90, 141],
+              width: 4,
+              cap: "round",
+              join: "round"
+            }
+          });
+          app.mapView.graphics.add(graphic);
+        }
+      
+      // Temp step to output the object created
+        function completeVertices(event) {
+          // create a polyline from returned vertices
+            const result = completeGraphic(event);
+        }
+
+      // Temp step to output the object created
+        function completeGraphic(event) {
+            const vertices = event.vertices;
+            app.mapView.graphics.removeAll();
+
+            // a graphic representing the polyline that is being drawn
+              const graphic = new Graphic({
+                geometry: {
+                  type: "polyline",
+                  paths: vertices,
+                  spatialReference: app.mapView.spatialReference
+                },
+                symbol: {
+                  type: "simple-line", // autocasts as new SimpleFillSymbol
+                  color: [4, 90, 141],
+                  width: 4,
+                  cap: "round",
+                  join: "round"
+                }
+              });
+          app.mapView.graphics.add(graphic);
+          configureEditing();
+          newClosureContainer.style.display = 'none';
+          newClosureFormContainer.style.display = 'block';
+          console.log(graphic);
+        };
+      
+    // Define onClick function for the 'reset-button' to allow users to delete their graphics 
+      document.getElementById("reset-button").onclick = function () {
+        app.mapView.graphics.removeAll();
+        };
+
+
+  //----------------END DRAWING SECTION ------------------------------------------------//
+
+  //----------------BEGIN EDITING SECTION ----------------------------------------------//
+    function configureEditing(){
+        closureForm = new FeatureForm({
+        container: "newClosureFormContainer",
+        layer: closureFeatureLayer,
+        fieldConfig: [
+          {
+            name: "BLOCKNM",
+            options: {
+              label: "Closure Location Name"
+            }
+          },
+          {
+            name: "LOCDESC",
+            options: {
+              label: "Location Description"
+            }
+          }
+        ]
+      });
+    };
+
+  });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,2452 @@
+/*!
+ * Calcite Maps v0.0.2 (http://github.com/esri/calcite-maps)
+ * Copyright 2016 Esri
+ * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
+ */
+
+   /*!
+This CSS resource incorporates links to font software which is the valuable copyrighted
+property of Monotype Imaging and/or its suppliers. You may not attempt to copy, install,
+redistribute, convert, modify or reverse engineer this font software. Please contact Monotype
+Imaging with any questions regarding Web Fonts:  http://www.fonts.com
+*/
+
+.calcite-navbar.calcite-text-light {
+  .calcite-title-main, .navbar-brand {
+    color: #fff;
+  }
+}
+
+body {
+  font-family: "Avenir Next W00","Avenir Next",Avenir;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+@font-face {
+  font-family: "Avenir Next W00";
+  src: url(../fonts/avenir-next/Avenir_Next_W00_400.eot?#iefix);
+  src: url(../fonts/avenir-next/Avenir_Next_W00_400.eot?#iefix) format("eot"), url(../fonts/avenir-next/Avenir_Next_W00_400.woff2) format("woff2"), url(../fonts/avenir-next/Avenir_Next_W00_400.woff) format("woff"), url(../fonts/avenir-next/Avenir_Next_W00_400.ttf) format("truetype"), url(../fonts/avenir-next/Avenir_Next_W00_400.svg) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Avenir Next W00";
+  src: url(../fonts/avenir-next/Avenir_Next_W00_Italic_400.eot?#iefix);
+  src: url(../fonts/avenir-next/Avenir_Next_W00_Italic_400.eot?#iefix) format("eot"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_400.woff2) format("woff2"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_400.woff) format("woff"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_400.ttf) format("truetype"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_400.svg) format("svg");
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Avenir Next W00";
+  src: url(../fonts/avenir-next/Avenir_Next_W00_600.eot?#iefix);
+  src: url(../fonts/avenir-next/Avenir_Next_W00_600.eot?#iefix) format("eot"), url(../fonts/avenir-next/Avenir_Next_W00_600.woff2) format("woff2"), url(../fonts/avenir-next/Avenir_Next_W00_600.woff) format("woff"), url(../fonts/avenir-next/Avenir_Next_W00_600.ttf) format("truetype"), url(../fonts/avenir-next/Avenir_Next_W00_600.svg) format("svg");
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Avenir Next W00";
+  src: url(../fonts/avenir-next/Avenir_Next_W00_Italic_600.eot?#iefix);
+  src: url(../fonts/avenir-next/Avenir_Next_W00_Italic_600.eot?#iefix) format("eot"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_600.woff2) format("woff2"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_600.woff) format("woff"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_600.ttf) format("truetype"), url(../fonts/avenir-next/Avenir_Next_W00_Italic_600.svg) format("svg");
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+.calcite-bgcolor-custom {
+  background-color: inherit;
+}
+
+.calcite-bgcolor-transparent {
+  background-color: transparent !important;
+}
+
+.calcite-bgcolor-light {
+  background-color: #fff !important;
+}
+
+.calcite-bgcolor-dark {
+  background-color: #323232 !important;
+}
+
+.calcite-bgcolor-true-white {
+  background-color: #fff !important;
+}
+
+.calcite-bgcolor-off-white {
+  background-color: #f8f8f8 !important;
+}
+
+.calcite-bgcolor-white {
+  background-color: #fff !important;
+}
+
+.calcite-bgcolor-white-25 {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.calcite-bgcolor-white-50 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.calcite-bgcolor-white-75 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.calcite-bgcolor-lightest-grey {
+  background-color: #efefef !important;
+}
+
+.calcite-bgcolor-lighter-grey {
+  background-color: #ccc !important;
+}
+
+.calcite-bgcolor-light-grey {
+  background-color: #a9a9a9 !important;
+}
+
+.calcite-bgcolor-grey {
+  background-color: #959595 !important;
+}
+
+.calcite-bgcolor-grey-25 {
+  background-color: rgba(149, 149, 149, 0.25) !important;
+}
+
+.calcite-bgcolor-grey-50 {
+  background-color: rgba(149, 149, 149, 0.5) !important;
+}
+
+.calcite-bgcolor-grey-75 {
+  background-color: rgba(149, 149, 149, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-grey {
+  background-color: #828282 !important;
+}
+
+.calcite-bgcolor-darker-grey {
+  background-color: #6e6e6e !important;
+}
+
+.calcite-bgcolor-darkest-grey {
+  background-color: #595959 !important;
+}
+
+.calcite-bgcolor-true-black {
+  background-color: #000 !important;
+}
+
+.calcite-bgcolor-off-black {
+  background-color: #4c4c4c !important;
+}
+
+.calcite-bgcolor-black {
+  background-color: #323232 !important;
+}
+
+.calcite-bgcolor-black-25 {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.calcite-bgcolor-black-50 {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.calcite-bgcolor-black-75 {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.calcite-bgcolor-light-blue {
+  background-color: #d2e9f9 !important;
+}
+
+.calcite-bgcolor-blue {
+  background-color: #56a5d8 !important;
+}
+
+.calcite-bgcolor-blue-25 {
+  background-color: rgba(86, 165, 216, 0.25) !important;
+}
+
+.calcite-bgcolor-blue-50 {
+  background-color: rgba(86, 165, 216, 0.5) !important;
+}
+
+.calcite-bgcolor-blue-75 {
+  background-color: rgba(86, 165, 216, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-blue {
+  background-color: #196fa6 !important;
+}
+
+.calcite-bgcolor-light-green {
+  background-color: #ddeedb !important;
+}
+
+.calcite-bgcolor-green {
+  background-color: #5a9359 !important;
+}
+
+.calcite-bgcolor-green-25 {
+  background-color: rgba(90, 147, 89, 0.25) !important;
+}
+
+.calcite-bgcolor-green-50 {
+  background-color: rgba(90, 147, 89, 0.5) !important;
+}
+
+.calcite-bgcolor-green-75 {
+  background-color: rgba(90, 147, 89, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-green {
+  background-color: #275e26 !important;
+}
+
+.calcite-bgcolor-light-red {
+  background-color: #e4a793 !important;
+}
+
+.calcite-bgcolor-red {
+  background-color: #c6542d !important;
+}
+
+.calcite-bgcolor-red-25 {
+  background-color: rgba(198, 84, 45, 0.25) !important;
+}
+
+.calcite-bgcolor-red-50 {
+  background-color: rgba(198, 84, 45, 0.5) !important;
+}
+
+.calcite-bgcolor-red-75 {
+  background-color: rgba(198, 84, 45, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-red {
+  background-color: #8c2907 !important;
+}
+
+.calcite-bgcolor-light-orange {
+  background-color: #f6ca92 !important;
+}
+
+.calcite-bgcolor-orange {
+  background-color: #d17e21 !important;
+}
+
+.calcite-bgcolor-orange-25 {
+  background-color: rgba(209, 126, 33, 0.25) !important;
+}
+
+.calcite-bgcolor-orange-50 {
+  background-color: rgba(209, 126, 33, 0.5) !important;
+}
+
+.calcite-bgcolor-orange-75 {
+  background-color: rgba(209, 126, 33, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-orange {
+  background-color: #e8912e !important;
+}
+
+.calcite-bgcolor-light-yellow {
+  background-color: #efe397 !important;
+}
+
+.calcite-bgcolor-yellow {
+  background-color: #e4d154 !important;
+}
+
+.calcite-bgcolor-yellow-25 {
+  background-color: rgba(228, 209, 84, 0.25) !important;
+}
+
+.calcite-bgcolor-yellow-50 {
+  background-color: rgba(228, 209, 84, 0.5) !important;
+}
+
+.calcite-bgcolor-yellow-75 {
+  background-color: rgba(228, 209, 84, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-yellow {
+  background-color: #d9bf2b !important;
+}
+
+.calcite-bgcolor-light-purple {
+  background-color: #c4bcdc !important;
+}
+
+.calcite-bgcolor-purple {
+  background-color: #9081bc !important;
+}
+
+.calcite-bgcolor-purple-25 {
+  background-color: rgba(144, 129, 188, 0.25) !important;
+}
+
+.calcite-bgcolor-purple-50 {
+  background-color: rgba(144, 129, 188, 0.5) !important;
+}
+
+.calcite-bgcolor-purple-75 {
+  background-color: rgba(144, 129, 188, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-purple {
+  background-color: #7461a8 !important;
+}
+
+.calcite-bgcolor-light-brown {
+  background-color: #d2b38f !important;
+}
+
+.calcite-bgcolor-brown {
+  background-color: #a57946 !important;
+}
+
+.calcite-bgcolor-brown-25 {
+  background-color: rgba(165, 121, 70, 0.25) !important;
+}
+
+.calcite-bgcolor-brown-50 {
+  background-color: rgba(165, 121, 70, 0.5) !important;
+}
+
+.calcite-bgcolor-brown-75 {
+  background-color: rgba(165, 121, 70, 0.75) !important;
+}
+
+.calcite-bgcolor-dark-brown {
+  background-color: #8c5e2a !important;
+}
+
+.calcite-index-top {
+  z-index: 100;
+}
+
+.calcite-index-bottom {
+  z-index: auto;
+}
+
+.calcite-overflow-visible {
+  overflow: visible;
+}
+
+.calcite-btn-noborder {
+  border: none;
+}
+
+.calcite-width-full {
+  width: 100%;
+}
+
+.visible-xs-flex {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .visible-xs-flex {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .visible-mobile-only {
+    display: none !important;
+  }
+}
+
+.calcite-maps {
+  overflow: hidden;
+  -ms-overflow-style: none;
+}
+
+.calcite-map {
+  width: auto;
+  height: auto;
+  .calcite-map-absolute, &.calcite-map-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .calcite-map-fixed, &.calcite-map-fixed {
+    position: relative;
+    width: 768px;
+    height: 500px;
+  }
+}
+
+.calcite-navbar {
+  height: 50px;
+  border: 0;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  .navbar-header {
+    order: 0;
+    flex-shrink: 0;
+  }
+  .navbar-brand {
+    padding: 10px 15px;
+    font-size: 32px;
+    cursor: pointer;
+    img {
+      width: 40px;
+    }
+  }
+  .navbar-nav {
+    display: flex;
+    order: 2;
+    flex-shrink: 0;
+    margin: 0;
+    > li > a {
+      padding: 15px;
+      font-size: 14px;
+    }
+  }
+}
+
+.calcite-title {
+  order: 1;
+  flex-grow: 1;
+  margin: 0;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+}
+
+.calcite-title-main {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 1px 0 2px;
+  overflow: hidden;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.calcite-title-divider {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100px;
+  margin: 0 15px;
+  transform: scale(0.7, 0.3);
+  transform-origin: left;
+  border-left: 1px solid;
+}
+
+.calcite-title-sub {
+  display: inline-block;
+  margin: 0;
+  padding: 1px 0 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.calcite-overflow-hidden {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.calcite-navbar-search {
+  margin: 9px;
+}
+
+.calcite-dropdown-toggle {
+  display: block;
+  width: 17px;
+  height: 14px;
+  position: relative;
+  margin: 0;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
+  -webkit-transition: .15s ease-in-out;
+  -moz-transition: .15s ease-in-out;
+  -o-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
+  cursor: pointer;
+  span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border-radius: 5px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transition: .1s ease-in-out;
+    -moz-transition: .1s ease-in-out;
+    -o-transition: .1s ease-in-out;
+    transition: .1s ease-in-out;
+  }
+}
+
+.calcite-navbar.calcite-text-light {
+  .dropdown-toggle {
+    &:focus, &:hover {
+      background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+      transition: color 150ms linear,text-decoration 150ms linear;
+    }
+  }
+  .navbar-brand {
+    &:focus, &:hover {
+      background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+      transition: color 150ms linear,text-decoration 150ms linear;
+    }
+  }
+}
+
+.calcite-dropdown-toggle {
+  span {
+    &:nth-child(2) {
+      top: 0;
+    }
+    &:nth-child(3), &:nth-child(4) {
+      top: 6px;
+    }
+    &:nth-child(5) {
+      top: 12px;
+    }
+  }
+  &.open span {
+    &:nth-child(2), &:nth-child(5) {
+      top: 6px;
+      width: 0%;
+      left: 50%;
+    }
+    &:nth-child(3) {
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    &:nth-child(4) {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.calcite-nav-hidden .calcite-navbar {
+  background-color: transparent !important;
+  right: auto;
+  .calcite-nav, .calcite-title {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-title-main {
+    font-size: 20px;
+    flex-shrink: 1;
+  }
+  .calcite-title-sub {
+    font-size: 12px;
+  }
+}
+
+.calcite-nav-top {
+  top: 0;
+  bottom: auto;
+}
+
+.calcite-nav-bottom {
+  top: auto;
+  bottom: 0;
+}
+
+.calcite-nav-top-fixed {
+  top: 50px;
+  bottom: 0;
+  .calcite-map-absolute {
+    top: 50px;
+    bottom: 0;
+  }
+}
+
+.calcite-nav-bottom-fixed {
+  top: 0;
+  bottom: 50px;
+  .calcite-map-absolute {
+    top: 0;
+    bottom: 50px;
+  }
+}
+
+.calcite-margin-top .calcite-navbar {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+.calcite-margin-bottom .calcite-navbar {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.calcite-margin-all .calcite-navbar {
+  margin: 15px;
+}
+
+.calcite-navbar {
+  &.calcite-bg-dark.navbar {
+    background-color: #333;
+  }
+  &.calcite-text-light {
+    .calcite-dropdown-toggle span, .dropdown-toggle .icon-bar {
+      background-color: #fff;
+    }
+    .calcite-title-divider {
+      color: #f8f8f8;
+      opacity: .75;
+    }
+    .calcite-title-sub {
+      color: #f8f8f8;
+    }
+  }
+}
+
+.calcite-dropdown.calcite-text-light .dropdown-menu li > a {
+  color: #fff;
+  &:focus, &:hover {
+    color: #fff;
+  }
+}
+
+.calcite-navbar {
+  &.calcite-text-light .navbar-nav > {
+    li > a {
+      color: #fff;
+    }
+    .active > a {
+      color: #fff;
+      background-color: transparent;
+      background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+      transition: color 150ms linear,text-decoration 150ms linear;
+      &:focus, &:hover {
+        color: #fff;
+        background-color: transparent;
+        background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+      }
+    }
+    .open > a {
+      color: #fff;
+      background-color: transparent;
+      background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+      transition: color 150ms linear,text-decoration 150ms linear;
+      &:focus, &:hover {
+        color: #fff;
+        background-color: transparent;
+        background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        color: #fff;
+        background-color: transparent;
+        background-image: linear-gradient(to top, transparent 96%, #fff 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+      }
+    }
+    .disabled > a {
+      color: #e7e7e7;
+      background-color: transparent;
+      &:focus, &:hover {
+        color: #e7e7e7;
+        background-color: transparent;
+      }
+    }
+  }
+  &.calcite-text-dark {
+    .calcite-title-main, .navbar-brand {
+      color: #323232;
+    }
+  }
+}
+
+.calcite-nav-bottom .calcite-navbar.calcite-text-light {
+  .dropdown-toggle {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+    }
+  }
+  .navbar-brand {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+    }
+  }
+  .navbar-nav > {
+    .active > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      }
+    }
+    .open > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      }
+    }
+  }
+}
+
+.calcite-nav-bottom-fixed .calcite-navbar.calcite-text-light {
+  .dropdown-toggle {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+    }
+  }
+  .navbar-brand {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+    }
+  }
+  .navbar-nav > {
+    .active > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      }
+    }
+    .open > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #fff 2px);
+      }
+    }
+  }
+}
+
+.calcite-navbar {
+  &.calcite-text-dark {
+    .dropdown-toggle {
+      &:focus, &:hover {
+        background-image: linear-gradient(to top, transparent 96%, #000 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+      }
+    }
+    .navbar-brand {
+      &:focus, &:hover {
+        background-image: linear-gradient(to top, transparent 96%, #000 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+      }
+    }
+  }
+  &.calcite-bg-light.navbar {
+    background-color: #fff;
+  }
+  &.calcite-text-dark {
+    .calcite-dropdown-toggle span, .dropdown-toggle .icon-bar {
+      background-color: #4c4c4c;
+    }
+    .calcite-title-divider {
+      color: #595959;
+      opacity: .75;
+    }
+    .calcite-title-sub {
+      color: #595959;
+    }
+    .navbar-nav > {
+      li > a {
+        color: #323232;
+      }
+      .active > a {
+        color: #000;
+        background-color: transparent;
+        background-image: linear-gradient(to top, transparent 96%, #000 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+        &:focus, &:hover {
+          color: #000;
+          background-color: transparent;
+          background-image: linear-gradient(to top, transparent 96%, #000 2px);
+          transition: color 150ms linear,text-decoration 150ms linear;
+        }
+      }
+      .open > a {
+        color: #000;
+        background-color: transparent;
+        background-image: linear-gradient(to top, transparent 96%, #000 2px);
+        transition: color 150ms linear,text-decoration 150ms linear;
+        &:focus, &:hover {
+          color: #000;
+          background-color: transparent;
+          background-image: linear-gradient(to top, transparent 96%, #000 2px);
+          transition: color 150ms linear,text-decoration 150ms linear;
+        }
+      }
+      li > a {
+        &:focus, &:hover {
+          color: #000;
+          background-color: transparent;
+          background-image: linear-gradient(to top, transparent 96%, #000 2px);
+          transition: color 150ms linear,text-decoration 150ms linear;
+        }
+      }
+      .disabled > a {
+        background-color: transparent;
+        color: #6e6e6e;
+        &:focus, &:hover {
+          background-color: transparent;
+          color: #6e6e6e;
+        }
+      }
+    }
+  }
+}
+
+.calcite-nav-bottom .calcite-navbar.calcite-text-dark {
+  .dropdown-toggle {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+    }
+  }
+  .navbar-brand {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+    }
+  }
+  .navbar-nav > {
+    .active > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      }
+    }
+    .open > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      }
+    }
+  }
+}
+
+.calcite-nav-bottom-fixed .calcite-navbar.calcite-text-dark {
+  .dropdown-toggle {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+    }
+  }
+  .navbar-brand {
+    &:focus, &:hover {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+    }
+  }
+  .navbar-nav > {
+    .active > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      }
+    }
+    .open > a {
+      background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        background-image: linear-gradient(to bottom, transparent 96%, #000 2px);
+      }
+    }
+  }
+}
+
+.calcite-dropdown {
+  order: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  [class*=" esri-icon-"], [class^=esri-icon-] {
+    position: relative;
+    font-size: 15px;
+    top: 2px;
+  }
+  &.right {
+    order: 2;
+  }
+  .dropdown-toggle {
+    display: block;
+    margin: 0;
+    padding: 17px 20px 19px 22px;
+    border: none;
+    .icon-bar {
+      display: block;
+      border-radius: 0;
+      height: 14px;
+      width: 17px;
+      background-color: #4c4c4c;
+      + .icon-bar {
+        margin-top: 4px;
+      }
+    }
+  }
+  &.open .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+  }
+  .dropdown-menu {
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    right: auto;
+    max-height: 500px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    font-size: 14px;
+    -moz-transition: visibility,opacity .2s ease-out;
+    -webkit-transition: visibility,opacity .2s ease-out;
+    transition: visibility,opacity .2s ease-out;
+  }
+  &.calcite-right .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  &.open .dropdown-menu.calcite-menu-drawer {
+    left: 0;
+    -moz-transition: left .25s ease-out;
+    -webkit-transition: left .25s ease-out;
+    transition: left .25s ease-out;
+  }
+  .dropdown-menu {
+    &.calcite-menu-drawer {
+      position: fixed;
+      top: 50px;
+      bottom: 0;
+      max-height: 100%;
+      left: -250px;
+      visibility: visible;
+      opacity: 1;
+      -moz-transition: left .5s ease-out;
+      -webkit-transition: left .5s ease-out;
+      transition: left .5s ease-out;
+    }
+    > li > a {
+      padding: 9px 15px;
+    }
+    a > span {
+      padding-right: 3px;
+    }
+  }
+  &.dropdown .dropdown-menu {
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-navbar .dropdown-toggle {
+    padding: 17px 18px 19px 20px;
+  }
+}
+
+@media (min-height: 320px) {
+  .calcite-navbar .dropdown-menu {
+    max-height: 260px;
+  }
+}
+
+@media (min-height: 544px) {
+  .calcite-navbar .dropdown-menu {
+    max-height: 484px;
+  }
+}
+
+@media (min-height: 767px) {
+  .calcite-navbar .dropdown-menu {
+    max-height: 707px;
+  }
+}
+
+.calcite-nav-top .calcite-dropdown .dropdown-menu, .calcite-nav-top-fixed .calcite-dropdown .dropdown-menu {
+  top: 100%;
+  bottom: auto;
+}
+
+.calcite-nav-top .calcite-dropdown .calcite-menu-drawer, .calcite-nav-top-fixed .calcite-dropdown .calcite-menu-drawer {
+  top: 50px;
+  bottom: 0;
+}
+
+.calcite-nav-top {
+  &.calcite-margin-all .calcite-dropdown .calcite-menu-drawer, &.calcite-margin-top .calcite-dropdown .calcite-menu-drawer {
+    top: 65px;
+    bottom: 0;
+  }
+}
+
+.calcite-nav-bottom .calcite-dropdown .dropdown-menu, .calcite-nav-bottom-fixed .calcite-dropdown .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+}
+
+.calcite-nav-bottom .calcite-dropdown .calcite-menu-drawer, .calcite-nav-bottom-fixed .calcite-dropdown .calcite-menu-drawer {
+  top: 0;
+  bottom: 50px;
+}
+
+.calcite-nav-bottom {
+  &.calcite-margin-all .calcite-dropdown .calcite-menu-drawer, &.calcite-margin-bottom .calcite-dropdown .calcite-menu-drawer {
+    top: 0;
+    bottom: 65px;
+  }
+}
+
+.calcite-dropdown {
+  &.calcite-bg-dark .dropdown-menu {
+    background-color: #333;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    .active > a {
+      background-color: #4c4c4c;
+      &:focus, &:hover {
+        background-color: #4c4c4c;
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        background-color: #4c4c4c;
+      }
+    }
+  }
+  &.calcite-bg-light .dropdown-menu {
+    background-color: #fff;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+    .active > a {
+      background-color: #f4f4f4;
+      &:focus, &:hover {
+        background-color: #f4f4f4;
+      }
+    }
+    li > a {
+      &:focus, &:hover {
+        background-color: #f4f4f4;
+      }
+    }
+  }
+  &.calcite-text-dark .dropdown-menu li > a {
+    color: #4c4c4c;
+    &:focus, &:hover {
+      color: #4c4c4c;
+    }
+  }
+}
+
+.calcite-panels {
+  &.panel-group {
+    margin-bottom: 0;
+  }
+  .panel {
+    margin-top: 0;
+    border: none;
+    border-radius: 0;
+    font-size: 13px;
+    background-color: inherit;
+    + .panel {
+      margin-top: 0;
+    }
+  }
+  .panel-heading {
+    padding: 0;
+    border-radius: 0;
+  }
+  .panel-title {
+    display: flex;
+    height: 33px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .panel-label {
+    display: inline-block;
+    padding-left: 5px;
+  }
+  .panel-toggle {
+    flex: 1;
+    padding: 7px 0 0 10px;
+    text-decoration: none;
+    min-width: 32px;
+    .glyphicon {
+      top: 1px;
+      margin: 0;
+      padding-right: 2px;
+      font-size: 13px;
+    }
+  }
+  .panel-close {
+    padding: 9px 10px 0;
+    font-size: 13px;
+    text-decoration: none;
+    .esri-icon.esri-icon-close {
+      font-size: 13px;
+    }
+  }
+  .panel-overflow-hidden {
+    overflow: hidden;
+  }
+  .panel-heading + .panel-collapse > .panel-body {
+    border-top: none;
+  }
+  .panel-body {
+    padding: 15px;
+    width: 350px;
+    min-height: 50px;
+    max-height: 500px;
+    font-size: 13px;
+    overflow-x: hidden;
+    button, input, select, textarea {
+      font-size: 13px;
+    }
+    select {
+      -webkit-appearance: none;
+      appearance: none;
+      -moz-appearance: none;
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: 18px;
+      outline: 0;
+      padding-right: 22px;
+      &::-ms-expand {
+        display: none;
+      }
+    }
+    .form-control {
+      height: 34px;
+      padding: 4px 8px;
+    }
+    select.form-control {
+      padding: 4px 22px 4px 8px;
+    }
+    .calcite-form-title {
+      padding: 20px 0 5px;
+    }
+    .calcite-form-padding {
+      padding: 15px 0 0;
+    }
+    .nav-tabs > li > a {
+      padding: 6px 12px 4px;
+      border-top: 1px solid transparent;
+      &:focus, &:hover {
+        padding-top: 5px;
+        border-top: 2px solid;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+  .calcite-body-expander {
+    min-height: 50px;
+    -webkit-transition: min-height .25s ease-out;
+    -o-transition: min-height .25s ease-out;
+    transition: min-height .25s ease-out;
+    &:focus, &:hover {
+      min-height: 125px;
+      -webkit-transition: min-height .25s ease-out;
+      -o-transition: min-height .25s ease-out;
+      transition: min-height .25s ease-out;
+    }
+  }
+  .calcite-body-expanded {
+    height: 125px;
+    -webkit-transition: height .25s ease-out;
+    -o-transition: height .25s ease-out;
+    transition: height .25s ease-out;
+  }
+  .panel.collapsing {
+    -webkit-transition: height 10ms ease-out;
+    -o-transition: height 10ms ease-out;
+    transition: height 10ms ease-out;
+  }
+  .panel-collapse.collapsing {
+    -webkit-transition: height .35s ease-out;
+    -o-transition: height .35s ease-out;
+    transition: height .35s ease-out;
+  }
+  position: absolute;
+  top: 15px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .calcite-panels .panel-body {
+    width: 100%;
+  }
+}
+
+@media (min-height: 992px) {
+  .calcite-panels .panel-body {
+    max-height: 496px;
+  }
+}
+
+@media (max-height: 767px) {
+  .calcite-panels .panel-body {
+    max-height: 383.5px;
+  }
+}
+
+@media (max-height: 544px) {
+  .calcite-panels .panel-body {
+    max-height: 272px;
+  }
+}
+
+@media (max-height: 320px) {
+  .calcite-panels .panel-body {
+    max-height: 160px;
+  }
+}
+
+.calcite-panels-right {
+  left: auto;
+  right: 15px;
+}
+
+.calcite-panels-left {
+  left: 15px;
+  right: auto;
+}
+
+.calcite-nav-top .calcite-panels, .calcite-nav-top-fixed .calcite-panels {
+  top: 65px;
+}
+
+.calcite-nav-top {
+  &.calcite-margin-all .calcite-panels, &.calcite-margin-top .calcite-panels {
+    top: 80px;
+  }
+}
+
+.calcite-nav-top-fixed.calcite-nav-hidden .calcite-panels {
+  top: 15px;
+}
+
+.calcite-nav-top {
+  &.calcite-margin-all.calcite-nav-hidden .calcite-panels, &.calcite-margin-top.calcite-nav-hidden .calcite-panels, &.calcite-nav-hidden .calcite-panels {
+    top: 15px;
+  }
+}
+
+.calcite-nav-bottom .calcite-panels, .calcite-nav-bottom-fixed .calcite-panels {
+  top: 31px;
+}
+
+.calcite-nav-bottom {
+  &.calcite-margin-all .calcite-panels, &.calcite-margin-bottom .calcite-panels {
+    top: 31px;
+  }
+}
+
+.calcite-panels {
+  &.calcite-bg-dark {
+    background-color: #333;
+    .panel {
+      background-color: inherit;
+    }
+    .panel-heading {
+      background-color: #4c4c4c;
+      &:hover {
+        background-color: #5c5c5c;
+      }
+    }
+    .nav-tabs {
+      border-bottom: 1px solid #666;
+      > li {
+        > a {
+          &:focus, &:hover {
+            background-color: transparent;
+            border-top-color: #fff;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+          }
+        }
+        &.active > a {
+          background-color: #333;
+          border-color: #fff #666 transparent;
+          border-top-width: 2px;
+          padding-top: 5px;
+        }
+      }
+    }
+    input, select, textarea {
+      background-color: transparent;
+      border: 1px solid #666;
+      color: #fff;
+    }
+    option {
+      color: #4c4c4c;
+      background-color: #fff;
+    }
+  }
+  &.calcite-text-light {
+    .nav-tabs > li {
+      &.active > a, > a {
+        color: #fff;
+      }
+    }
+    .panel {
+      color: #fff;
+    }
+    .panel-close {
+      color: #fff;
+      &:focus, &:hover {
+        color: #fff;
+      }
+    }
+    .panel-heading {
+      color: #fff;
+    }
+    .panel-toggle {
+      color: #fff;
+      &:focus, &:hover {
+        color: #fff;
+      }
+    }
+    input, select, textarea {
+      color: #fff;
+    }
+    select {
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTAwcHgiIGhlaWdodD0iMTAwcHgiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMDAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGZpbGw9IiNGOEY4RjgiIGQ9Ik01Ni43NSwzNy40NjZjMC40MjUsMC40MjUsMC41NTIsMS4wNjMsMC4zMjIsMS42MThDNTYuODQyLDM5LjYzOSw1Ni4zMDIsNDAsNTUuNyw0MEg2LjMNCgkJYy0wLjYsMC0xLjE0My0wLjM2Mi0xLjM3Mi0wLjkxN2MtMC4yMy0wLjU1NS0wLjEwMy0xLjE5MywwLjMyMi0xLjYxOGwyMy40NC0yMy40NGMxLjI3Ni0xLjI3NiwzLjM0My0xLjI3Niw0LjYyLDBMNTYuNzUsMzcuNDY2DQoJCUw1Ni43NSwzNy40NjZ6IE01LjI1LDYyLjUzNGMtMC40MjYtMC40MjUtMC41NTMtMS4wNjMtMC4zMjMtMS42MThDNS4xNTcsNjAuMzYxLDUuNjk3LDYwLDYuMjk3LDYwaDQ5LjQwNA0KCQljMC42MDIsMCwxLjE0MywwLjM1OSwxLjM3MywwLjkxNmMwLjIzLDAuNTU1LDAuMTAzLDEuMTkzLTAuMzIyLDEuNjE4TDMzLjMxLDg1Ljk3N2MtMS4yNzUsMS4yNzUtMy4zNDQsMS4yNzQtNC42MiwwTDUuMjUsNjIuNTM0eiINCgkJLz4NCjwvZz4NCjwvc3ZnPg0K);
+    }
+    a {
+      color: #2493f2;
+      &:hover {
+        color: #3fa6ff;
+      }
+    }
+  }
+  &.calcite-bg-light {
+    background-color: #fff;
+    .panel {
+      background-color: inherit;
+    }
+    .panel-heading {
+      background-color: #f4f4f4;
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+    .nav-tabs {
+      border-bottom: 1px solid #959595;
+      > li {
+        > a {
+          &:focus, &:hover {
+            background-color: transparent;
+            border-top-color: #323232;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+          }
+        }
+        &.active > a {
+          background-color: #fff;
+          border-color: #323232 #959595 transparent;
+          border-top-width: 2px;
+          padding-top: 5px;
+        }
+      }
+    }
+    input, select, textarea {
+      background-color: transparent;
+      border: 1px solid #959595;
+      color: #4c4c4c;
+    }
+    option {
+      color: #4c4c4c;
+      background-color: #fff;
+    }
+  }
+  &.calcite-text-dark {
+    .panel {
+      color: #4c4c4c;
+    }
+    .panel-heading {
+      color: #595959;
+    }
+    .panel-toggle {
+      color: #595959;
+      &:focus, &:hover {
+        color: #595959;
+      }
+    }
+    .panel-close {
+      color: #828282;
+      &:focus, &:hover {
+        color: #323232;
+      }
+    }
+    .nav-tabs > li {
+      &.active > a, > a {
+        color: #4c4c4c;
+      }
+    }
+    input, select, textarea {
+      color: #4c4c4c;
+    }
+    select {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGcgZmlsbD0iIzU5NTk1OSI+PHBhdGggZD0iTTU2Ljc1IDM3LjQ2NmMuNDI1LjQyNS41NTIgMS4wNjMuMzIyIDEuNjE4LS4yMy41NTUtLjc3LjkxNi0xLjM3Mi45MTZINi4zYy0uNiAwLTEuMTQzLS4zNjItMS4zNzItLjkxNy0uMjMtLjU1NS0uMTAzLTEuMTkzLjMyMi0xLjYxOGwyMy40NC0yMy40NGMxLjI3Ni0xLjI3NiAzLjM0My0xLjI3NiA0LjYyIDBsMjMuNDQgMjMuNDR6TTUuMjUgNjIuNTM0Yy0uNDI2LS40MjUtLjU1My0xLjA2My0uMzIzLTEuNjE4LjIzLS41NTUuNzctLjkxNiAxLjM3LS45MTZoNDkuNDA0Yy42MDIgMCAxLjE0My4zNiAxLjM3My45MTYuMjMuNTU1LjEwMyAxLjE5My0uMzIyIDEuNjE4TDMzLjMxIDg1Ljk3N2MtMS4yNzUgMS4yNzUtMy4zNDQgMS4yNzQtNC42MiAwTDUuMjUgNjIuNTM0eiIvPjwvZz48L3N2Zz4=);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-panels {
+    width: 100%;
+  }
+  .calcite-panels-left, .calcite-panels-right {
+    right: 0;
+    left: 0;
+  }
+  .calcite-nav-top .calcite-panels, .calcite-nav-top-fixed .calcite-panels {
+    top: auto;
+    bottom: 0;
+  }
+  .calcite-nav-top {
+    &.calcite-margin-all .calcite-panels, &.calcite-margin-top .calcite-panels {
+      top: auto;
+      bottom: 0;
+    }
+  }
+  .calcite-nav-bottom .calcite-panels, .calcite-nav-bottom-fixed .calcite-panels {
+    top: auto;
+    bottom: 50px;
+  }
+  .calcite-nav-bottom {
+    &.calcite-margin-all .calcite-panels, &.calcite-margin-bottom .calcite-panels {
+      top: auto;
+      bottom: 50px;
+    }
+    &.calcite-margin-all .calcite-panels {
+      margin: auto 15px 30px;
+      width: auto;
+    }
+  }
+  .calcite-nav-top.calcite-margin-all .calcite-panels {
+    margin: auto 15px 30px;
+    width: auto;
+  }
+  body {
+    &.calcite-nav-bottom-fixed.calcite-nav-hidden .calcite-panels, &.calcite-nav-bottom.calcite-nav-hidden .calcite-panels, &.calcite-nav-top-fixed.calcite-nav-hidden .calcite-panels, &.calcite-nav-top.calcite-nav-hidden .calcite-panels {
+      top: auto;
+    }
+  }
+  .calcite-nav-bottom .calcite-bg-dark .panel-body {
+    border-bottom: 1px solid #4c4c4c;
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-nav-bottom .calcite-bg-light .panel-body {
+    border-bottom: 1px solid #f4f4f4;
+  }
+}
+
+.calcite-dropdown.calcite-bg-custom .dropdown-menu {
+  background-color: inherit;
+  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.1);
+  .active > a {
+    background-color: rgba(255, 255, 255, 0.15);
+    &:focus, &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+  li > a {
+    &:focus, &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+.calcite-panels.calcite-bg-custom {
+  .panel {
+    background-color: inherit;
+  }
+  .panel-heading {
+    background-color: rgba(255, 255, 255, 0.15);
+    &:focus, &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+  .nav-tabs {
+    border-bottom: none;
+    > li {
+      > a {
+        border: 0;
+        padding-top: 4px;
+        &:focus, &:hover {
+          padding-top: 4px;
+          border-top: 0;
+          background-color: inherit;
+          -webkit-box-shadow: 0 -2px 0 0;
+          -moz-box-shadow: 0 -2px 0 0;
+          box-shadow: 0 -2px 0 0;
+        }
+      }
+      &.active > a {
+        position: relative;
+        padding-top: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-top: 0;
+        border-bottom-color: transparent;
+        background-color: inherit;
+        -webkit-box-shadow: 0 -2px 0 0;
+        -moz-box-shadow: 0 -2px 0 0;
+        box-shadow: 0 -2px 0 0;
+        &::after, &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          height: 0;
+          width: 999em;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+.calcite-layout-inline-left .calcite-navbar, .calcite-layout-inline-right .calcite-navbar, .calcite-layout-large-title .calcite-navbar {
+  height: 60px;
+  min-height: 60px;
+}
+
+.calcite-panels.calcite-bg-custom {
+  .nav-tabs > li.active > a {
+    &::before {
+      right: 100%;
+      margin-right: 1px;
+    }
+    &::after {
+      left: 100%;
+      margin-left: 1px;
+    }
+  }
+  input, select, textarea {
+    background-color: transparent;
+  }
+  option {
+    color: #4c4c4c;
+    background-color: #fff;
+  }
+  input:not([type=radio]):not([type=checkbox]):not([type=submit]), select, textarea {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder, &::placeholder {
+    color: inherit;
+    opacity: .65;
+  }
+}
+
+.calcite-nav-bottom .calcite-bg-custom .panel-body {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.calcite-carousel {
+  .carousel-inner > .item > img {
+    width: 100%;
+  }
+  .carousel {
+    margin: 30px;
+  }
+}
+
+.calcite-layout-inline-left {
+  .calcite-navbar-search {
+    margin: 15px;
+    &.calcite-search-expander {
+      margin: 15px;
+    }
+  }
+  &.calcite-nav-bottom.calcite-margin-all .leaflet-control-zoom, &.calcite-nav-top.calcite-margin-all .leaflet-control-zoom {
+    margin: 15px;
+  }
+}
+
+.calcite-layout-inline-right {
+  .calcite-navbar-search {
+    margin: 15px;
+    &.calcite-search-expander {
+      margin: 15px;
+    }
+  }
+  &.calcite-nav-bottom.calcite-margin-all .leaflet-control-zoom, &.calcite-nav-top.calcite-margin-all .leaflet-control-zoom {
+    margin: 15px;
+  }
+}
+
+.calcite {
+  &.calcite-layout-inline-left {
+    &.calcite-nav-bottom.calcite-margin-all .esriSimpleSlider, &.calcite-nav-top.calcite-margin-all .esriSimpleSlider {
+      margin: 15px;
+    }
+  }
+  &.calcite-layout-inline-right {
+    &.calcite-nav-bottom.calcite-margin-all .esriSimpleSlider, &.calcite-nav-top.calcite-margin-all .esriSimpleSlider {
+      margin: 15px;
+    }
+  }
+}
+
+.calcite-layout-inline-left.calcite-nav-top.calcite-zoom-top-left.calcite-margin-all {
+  &.calcite-nav-hidden .esriZoom.esriVertical.esriComponent, &.calcite-nav-trans .leaflet-control-zoom {
+    margin-top: 15px;
+  }
+}
+
+.calcite-layout-inline-right.calcite-nav-top.calcite-zoom-top-left.calcite-margin-all.calcite-nav-hidden {
+  .esriZoom.esriVertical.esriComponent, .leaflet-control-zoom {
+    margin-top: 15px;
+  }
+}
+
+.calcite-tooltip .tooltip {
+  min-width: 75px;
+}
+
+.calcite-maps {
+  .tooltip-inner {
+    color: #dcdcdc;
+    background-color: #191919;
+  }
+  .tooltip {
+    .tooltip-arrow {
+      border-bottom-color: #191919;
+    }
+    &.in {
+      opacity: 1;
+    }
+  }
+}
+
+.calcite-layout-inline-left .calcite-navbar .navbar-nav > li > a, .calcite-layout-inline-right .calcite-navbar .navbar-nav > li > a {
+  padding: 20px 15px 21px;
+}
+
+.calcite-layout-inline-left .calcite-title-main, .calcite-layout-inline-right .calcite-title-main {
+  font-size: 26px;
+}
+
+.calcite-layout-inline-left .calcite-title-sub, .calcite-layout-inline-right .calcite-title-sub {
+  font-size: 14px;
+}
+
+.calcite-layout-inline-left .calcite-navbar {
+  left: 47px;
+}
+
+.calcite-layout-inline-right .calcite-navbar {
+  right: 47px;
+}
+
+.calcite-layout-inline-left.calcite-nav-top.calcite-margin-all .calcite-panels, .calcite-layout-inline-right.calcite-nav-top.calcite-margin-all .calcite-panels {
+  top: 90px;
+  bottom: auto;
+}
+
+.calcite-layout-inline-left {
+  &.calcite-nav-top.calcite-margin-all.calcite-nav-hidden .calcite-panels {
+    top: 15px;
+    bottom: auto;
+  }
+  .calcite-dropdown .dropdown-toggle {
+    padding: 22px 20px 24px 21px;
+  }
+}
+
+.calcite-layout-inline-right .calcite-dropdown .dropdown-toggle {
+  padding: 22px 20px 24px 21px;
+}
+
+@media (max-width: 768px) {
+  .calcite-layout-inline-left.calcite-nav-top.calcite-margin-all {
+    .calcite-panels, &.calcite-nav-hidden .calcite-panels {
+      top: auto;
+      bottom: 0;
+      margin: auto 15px 30px;
+    }
+  }
+  .calcite-layout-inline-right.calcite-nav-top.calcite-margin-all {
+    .calcite-panels, &.calcite-nav-hidden .calcite-panels {
+      top: auto;
+      bottom: 0;
+      margin: auto 15px 30px;
+    }
+  }
+}
+
+.calcite-layout-large-title {
+  .calcite-navbar {
+    .navbar-brand {
+      padding: 12px 14px;
+      font-size: 36px;
+    }
+    .navbar-nav > li > a {
+      padding: 20px 15px;
+    }
+  }
+  .calcite-dropdown .dropdown-toggle {
+    padding: 22px 20px 24px 21px;
+  }
+  .calcite-dropdown-toggle {
+    margin-left: 2px;
+  }
+  .calcite-title-main {
+    padding: 3px 0 4px;
+    font-size: 28px;
+    line-height: 1.1;
+  }
+  .calcite-title-divider {
+    height: 120px;
+    margin: 0 20px;
+  }
+  .calcite-title-sub {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  .calcite-navbar-search.calcite-search-expander {
+    margin: 15px;
+  }
+  &.calcite-nav-bottom {
+    &.calcite-zoom-bottom-left .esriZoom.esriVertical.esriComponent, &.calcite-zoom-bottom-right .esriZoom.esriVertical.esriComponent {
+      margin: 75px 25px;
+    }
+  }
+  &.calcite-nav-top {
+    &.calcite-zoom-top-left .esriZoom.esriVertical.esriComponent, &.calcite-zoom-top-right .esriZoom.esriVertical.esriComponent {
+      margin: 75px 25px;
+    }
+    .calcite-map .leaflet-control-zoom {
+      margin: 75px 25px 15px 30px;
+    }
+    .calcite-dropdown .calcite-menu-drawer {
+      top: 60px;
+    }
+  }
+  &.calcite-nav-top-fixed .calcite-dropdown .calcite-menu-drawer {
+    top: 60px;
+  }
+  &.calcite-nav-top {
+    &.calcite-margin-all .calcite-dropdown .calcite-menu-drawer, &.calcite-margin-top .calcite-dropdown .calcite-menu-drawer {
+      top: 75px;
+    }
+  }
+  &.calcite-nav-bottom .calcite-dropdown .calcite-menu-drawer, &.calcite-nav-bottom-fixed .calcite-dropdown .calcite-menu-drawer {
+    bottom: 60px;
+  }
+  &.calcite-nav-bottom {
+    &.calcite-margin-all .calcite-dropdown .calcite-menu-drawer, &.calcite-margin-bottom .calcite-dropdown .calcite-menu-drawer {
+      bottom: 75px;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .calcite-layout-large-title {
+    &.calcite-nav-hidden.calcite-nav-top .calcite-panels, &.calcite-nav-top .calcite-panels {
+      top: 75px;
+    }
+    &.calcite-nav-hidden.calcite-nav-bottom .calcite-panels {
+      top: 30px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-layout-large-title {
+    &.calcite-nav-top .calcite-panels {
+      top: auto;
+    }
+    &.calcite-nav-bottom .calcite-panels, &.calcite-nav-bottom-fixed .calcite-panels {
+      bottom: 60px;
+    }
+    &.calcite-nav-bottom {
+      &.calcite-margin-all .calcite-panels, &.calcite-margin-bottom .calcite-panels {
+        bottom: 60px;
+      }
+    }
+  }
+}
+
+.calcite-layout-small-title {
+  .calcite-navbar {
+    height: 40px;
+    min-height: 40px;
+    .navbar-brand {
+      padding: 12px 14px;
+      font-size: 36px;
+    }
+    .navbar-nav > li > a {
+      padding: 10px 12px;
+    }
+  }
+  .calcite-dropdown .dropdown-toggle {
+    padding: 12px 20px 14px 21px;
+  }
+  .calcite-dropdown-toggle {
+    width: 15px;
+  }
+  .calcite-title-main {
+    padding: 3px 0 4px;
+    font-size: 19px;
+    line-height: 1.1;
+  }
+  .calcite-title-divider {
+    height: 80px;
+    margin: 0 13px;
+  }
+  .calcite-title-sub {
+    font-size: 12px;
+    line-height: 1.1;
+  }
+  .calcite-navbar-search.calcite-search-expander {
+    margin: 5px;
+  }
+  &.calcite-nav-bottom {
+    &.calcite-zoom-bottom-left .esriZoom.esriVertical.esriComponent, &.calcite-zoom-bottom-right .esriZoom.esriVertical.esriComponent {
+      margin: 55px 25px;
+    }
+  }
+  &.calcite-nav-top {
+    &.calcite-zoom-top-left .esriZoom.esriVertical.esriComponent, &.calcite-zoom-top-right .esriZoom.esriVertical.esriComponent {
+      margin: 55px 25px;
+    }
+    .calcite-map .leaflet-control-zoom {
+      margin: 55px 25px 15px 30px;
+    }
+    .calcite-dropdown .calcite-menu-drawer {
+      top: 40px;
+    }
+  }
+  &.calcite-nav-top-fixed .calcite-dropdown .calcite-menu-drawer {
+    top: 40px;
+  }
+  &.calcite-nav-top {
+    &.calcite-margin-all .calcite-dropdown .calcite-menu-drawer, &.calcite-margin-top .calcite-dropdown .calcite-menu-drawer {
+      top: 55px;
+    }
+  }
+  &.calcite-nav-bottom .calcite-dropdown .calcite-menu-drawer, &.calcite-nav-bottom-fixed .calcite-dropdown .calcite-menu-drawer {
+    bottom: 40px;
+  }
+  &.calcite-nav-bottom {
+    &.calcite-margin-all .calcite-dropdown .calcite-menu-drawer, &.calcite-margin-bottom .calcite-dropdown .calcite-menu-drawer {
+      bottom: 55px;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .calcite-layout-small-title {
+    &.calcite-nav-hidden.calcite-nav-top .calcite-panels, &.calcite-nav-top .calcite-panels {
+      top: 55px;
+    }
+    &.calcite-nav-hidden.calcite-nav-bottom .calcite-panels {
+      top: 30px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-layout-small-title {
+    &.calcite-nav-top .calcite-panels {
+      top: auto;
+    }
+    .calcite-dropdown .dropdown-toggle {
+      padding: 12px 15px 14px 18px;
+    }
+    &.calcite-nav-bottom .calcite-panels, &.calcite-nav-bottom-fixed .calcite-panels {
+      bottom: 40px;
+    }
+    &.calcite-nav-bottom {
+      &.calcite-margin-all .calcite-panels, &.calcite-margin-bottom .calcite-panels {
+        bottom: 40px;
+      }
+    }
+  }
+}
+
+.esri-view {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.calcite-maps {
+  .esri-icon-cancel:before, .esri-icon-close:before, .esri-icon-search:before {
+    color: unset;
+  }
+  .esri-widget {
+    .esri-widget--button, &.esri-widget--button {
+      width: 30px;
+      height: 30px;
+      font-size: 13px;
+    }
+    [class*=esri-icon], [role=button] [class*=esri-icon] {
+      font-size: 14px;
+    }
+    &.esri-compass .esri-compass__icon {
+      font-size: 18px;
+    }
+  }
+  .esri-search {
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 400;
+    height: auto;
+    .esri-search__input {
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 400;
+      height: auto;
+    }
+  }
+  .esri-widget .esri-menu {
+    background-color: #fff;
+    color: #4c4c4c;
+    li {
+      padding: .6em 1em;
+      font-size: 13px;
+    }
+  }
+  .esri-basemap-gallery {
+    width: 100%;
+  }
+  .esri-widget {
+    .esri-basemap-toggle__container, .esri-basemap-toggle__image {
+      width: 48px;
+      height: 48px;
+    }
+    &.esri-basemap-toggle {
+      width: 49px;
+      height: 49px;
+    }
+  }
+  .esri-scale-bar {
+    margin-bottom: -5px;
+  }
+}
+
+.calcite-map {
+  .esri-popup .esri-popup-collapsed .esri-widget h1, .esri-popup__header h1 {
+    margin: 0;
+  }
+}
+
+.calcite-maps .esri-scale-bar .esri-scale-bar__label {
+  padding: .5em 0 0;
+}
+
+.calcite-panels .esri-color-picker {
+  width: 100%;
+}
+
+.calcite-map {
+  .esri-ui .esri-popup {
+    z-index: 3;
+  }
+  .esri-popup__header .esri-popup__button {
+    padding: 12px 7px 10px;
+  }
+  .esri-popup .esri-popup-collapsed {
+    .esri-popup__content, .esri-popup__footer {
+      display: none;
+    }
+  }
+  .esri-ui-bottom-left, .esri-ui-bottom-right {
+    flex-flow: column nowrap;
+  }
+  .esri-ui-bottom-left .esri-widget.esri-component, .esri-ui-bottom-right .esri-widget.esri-component {
+    margin-top: 9px;
+  }
+  .esri-ui-top-left .esri-component, .esri-ui-top-right .esri-component {
+    margin-bottom: 9px;
+  }
+}
+
+.calcite-nav-bottom .esri-popup--is-docked {
+  margin-top: 30px;
+}
+
+.calcite-nav-top .esri-popup .esri-docked, .calcite-nav-top-fixed .esri-popup .esri-docked {
+  margin: 15px 15px 30px !important;
+}
+
+.calcite-nav-bottom .esri-popup .esri-docked, .calcite-nav-bottom-fixed .esri-popup .esri-docked {
+  margin: 30px 15px 15px !important;
+}
+
+.calcite-maps .esri-attribution {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.calcite-nav-top .esri-attribution, .calcite-nav-top-fixed .esri-attribution {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.calcite-nav-bottom .esri-ui .esri-attribution, .calcite-nav-bottom-fixed .esri-ui .esri-attribution {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+}
+
+.calcite-nav-bottom .navbar .esri-widget .esri-menu, .calcite-nav-bottom-fixed .navbar .esri-widget .esri-menu {
+  top: auto;
+  bottom: 36px;
+}
+
+.esri-search .esri-search__input {
+  line-height: 1;
+}
+
+.calcite-navbar-search {
+  .esri-search {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  &.calcite-search-expander {
+    .esri-search {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      font-size: 13px;
+      .esri-widget--button {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        background-color: transparent;
+      }
+      .esri-search__input {
+        background-color: transparent;
+        height: auto;
+        border: 0;
+      }
+      &::after {
+        content: " ";
+        position: absolute;
+        left: 9px;
+        right: 0;
+        height: 15px;
+        width: calc(100% - 18px);
+        display: block;
+        background-color: transparent;
+      }
+      &::before {
+        content: " ";
+        position: absolute;
+        left: 9px;
+        right: 0;
+        height: 15px;
+        width: calc(100% - 18px);
+        display: block;
+        background-color: transparent;
+        top: 0;
+      }
+      &::after {
+        bottom: 0;
+      }
+      width: 30px;
+      .esri-search__container {
+        .esri-input.esri-search__input {
+          display: none;
+        }
+        .esri-menu {
+          &.esri-search__sources-menu, &.esri-search__suggestions-menu, &.esri-search__warning-menu {
+            display: none;
+          }
+        }
+        .esri-search--has-value .esri-search__clear-button, .esri-search--no-results .esri-search__no-results-menu, .esri-search__clear-button, .esri-search__form, .esri-search__input-container {
+          display: none;
+        }
+      }
+      .esri-widget__loader {
+        display: none;
+      }
+      .esri-search__container {
+        &:after, &:before {
+          animation: none;
+          background-color: transparent;
+        }
+      }
+    }
+    .calcite-search-expanded {
+      width: 240px;
+      .esri-search__container {
+        .esri-search--has-value .esri-search__clear-button, .esri-search--no-results .esri-search__no-results-menu, .esri-search__clear-button, .esri-search__form, .esri-search__input-container {
+          display: flex;
+        }
+        .esri-input.esri-search__input {
+          display: block;
+        }
+        .esri-menu {
+          &.esri-search__suggestions-menu, &.esri-search__warning-menu {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.calcite-navbar {
+  &.calcite-text-dark .calcite-search-expander {
+    .esri-widget {
+      &.esri-search {
+        background-color: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0);
+      }
+      color: #4c4c4c;
+    }
+    .esri-widget--button {
+      color: #4c4c4c;
+      background-color: transparent;
+      &.esri-disabled {
+        color: #6e6e6e;
+      }
+    }
+    .esri-search__input {
+      color: #4c4c4c;
+      &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder, &::placeholder {
+        color: #4c4c4c;
+        opacity: .5;
+      }
+    }
+    .esri-search__submit-button {
+      border-left: solid 1px rgba(255, 255, 255, 0);
+      color: #323232;
+    }
+    .esri-menu li {
+      background-color: #fff;
+      color: #4c4c4c;
+      &:focus, &:hover {
+        background-color: #f4f4f4;
+        color: #323232;
+      }
+    }
+    .esri-widget.esri-search.calcite-search-expanded {
+      border-color: rgba(0, 0, 0, 0.3);
+      .esri-search__submit-button {
+        border-color: transparent;
+        color: #323232;
+      }
+    }
+  }
+  &.calcite-text-light {
+    .calcite-search-expander {
+      .esri-widget {
+        &.esri-search {
+          background-color: transparent !important;
+          border: 1px solid rgba(255, 255, 255, 0);
+        }
+        color: #f8f8f8;
+      }
+      .esri-widget--button {
+        color: #f8f8f8;
+        background-color: transparent;
+        &.esri-disabled {
+          color: #e7e7e7;
+        }
+      }
+      .esri-search__input {
+        color: #f8f8f8;
+        &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder, &::placeholder {
+          color: #f8f8f8;
+          opacity: .5;
+        }
+      }
+      .esri-search__submit-button {
+        border-left: solid 1px rgba(255, 255, 255, 0);
+        color: #f8f8f8;
+      }
+      .esri-menu li {
+        background-color: #fff;
+        color: #4c4c4c;
+        &:focus, &:hover {
+          background-color: #f4f4f4;
+          color: #323232;
+        }
+      }
+    }
+    .esri-widget.esri-search.calcite-search-expanded {
+      border-color: rgba(255, 255, 255, 0.7);
+      .esri-search__submit-button {
+        border-color: transparent;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.calcite-panels {
+  z-index: 4;
+  .esri-search {
+    width: 100%;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    .esri-search__input {
+      border: none;
+      color: #4c4c4c;
+    }
+    .esri-menu {
+      width: calc(100% + 2px);
+      left: -1px;
+    }
+  }
+  .esri-legend {
+    width: 100%;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .esri-layer-list {
+    width: 100%;
+  }
+  .esri-print {
+    width: 100%;
+    &.esri-widget {
+      padding: 10px;
+    }
+  }
+  .esri-print__header-title {
+    display: none;
+  }
+}
+
+.calcite-navbar.calcite-bg-light .esri-search, .calcite-panels.calcite-bg-light .esri-search {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.calcite-navbar.calcite-bg-light .esri-print__panel--error, .calcite-panels.calcite-bg-light .esri-print__panel--error {
+  color: #4c4c4c;
+}
+
+.calcite-navbar.calcite-bg-dark label, .calcite-panels.calcite-bg-dark label {
+  font-weight: 400;
+}
+
+.calcite-navbar.calcite-bg-dark .esri-widget, .calcite-panels.calcite-bg-dark .esri-widget {
+  color: #fff;
+  background-color: #333;
+}
+
+.calcite-navbar.calcite-bg-dark .esri-widget .esri-menu, .calcite-panels.calcite-bg-dark .esri-widget .esri-menu {
+  color: #4c4c4c;
+  background-color: #fff;
+}
+
+.calcite-navbar.calcite-bg-dark .esri-search, .calcite-panels.calcite-bg-dark .esri-search {
+  border: 1px solid rgba(209, 209, 209, 0.2);
+}
+
+.calcite-widgets-dark {
+  .esri-widget .esri-menu li, .esri-zoom .esri-widget--button:last-child {
+    border-top: solid 1px rgba(209, 209, 209, 0.2);
+  }
+}
+
+.calcite-navbar.calcite-bg-dark .esri-print__panel-container.esri-print__advanced-options-section, .calcite-panels.calcite-bg-dark .esri-print__panel-container.esri-print__advanced-options-section {
+  background-color: #272727;
+}
+
+.calcite-navbar.calcite-bg-dark .esri-print__panel--error, .calcite-panels.calcite-bg-dark .esri-print__panel--error {
+  color: #fff;
+}
+
+.calcite-widgets-dark {
+  .esri-popup {
+    .esri-button, .esri-pointer .esri-pointer-direction, .esri-popup-main, .esri-popup__main-container {
+      background-color: #333;
+      color: #f8f8f8;
+    }
+  }
+  .esri-widget {
+    .esri-menu, .esri-popup {
+      background-color: #333;
+      color: #f8f8f8;
+    }
+  }
+  .esri-widget--button {
+    background-color: #333;
+    color: #f8f8f8;
+  }
+  .esri-widget {
+    &.esri-search, &:not(.esri-legend):not(.esri-attribution):not(.esri-spinner):not(.esri-scale-bar) {
+      background-color: #333;
+      color: #f8f8f8;
+    }
+  }
+  .esri-widget--button {
+    &:active, &:hover {
+      background-color: #4c4c4c !important;
+      color: #d1d1d1 !important;
+    }
+  }
+  .esri-search {
+    .esri-menu li {
+      &:active, &:focus, &:hover {
+        background-color: #4c4c4c;
+        color: #d1d1d1;
+      }
+    }
+    .esri-search__clear-button:hover {
+      background-color: #4c4c4c;
+      color: #d1d1d1;
+    }
+  }
+  .calcite-search-expander .esri-search {
+    .esri-menu li {
+      &:active, &:focus, &:hover {
+        background-color: #f4f4f4;
+        color: #323232;
+      }
+    }
+    .esri-search__clear-button:hover {
+      background-color: #f4f4f4;
+      color: #323232;
+    }
+  }
+  .esri-widget--button.esri-disabled {
+    color: #5c5c5c;
+  }
+  .esri-search, .esri-widget--button, .esri-zoom {
+    -webkit-box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+    box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+  }
+  .esri-search .esri-widget--button, .esri-zoom .esri-widget--button {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .esri-search .esri-search__submit-button {
+    border-left: solid 1px rgba(209, 209, 209, 0.2);
+  }
+  .esri-popup__button {
+    color: #f8f8f8;
+  }
+  .esri-navigation-toggle {
+    &:focus .esri-navigation-toggle__button, &:hover .esri-navigation-toggle__button {
+      color: #fff;
+    }
+  }
+  .esri-popup .esri-button {
+    &:focus, &:hover {
+      color: #fff;
+    }
+  }
+  .esri-popup__button {
+    &:focus, &:hover {
+      color: #fff;
+    }
+  }
+  .esri-widget table {
+    color: #fff;
+  }
+  .esri-popup__pointer-direction {
+    background-color: #333;
+  }
+  .esri-widget table tr {
+    &:nth-child(even) {
+      background-color: rgba(105, 105, 105, 0.7);
+    }
+    &:nth-child(odd) {
+      background-color: rgba(250, 250, 250, 0.1);
+    }
+  }
+  .esri-popup .esri-popup-content {
+    &::-webkit-scrollbar {
+      background-color: rgba(200, 200, 200, 0.2);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(200, 200, 200, 0.6);
+    }
+  }
+  .esri-navigation-toggle__button:before {
+    border-color: transparent #fff transparent transparent;
+  }
+}
+
+@media (max-width: 320px) {
+  .calcite-navbar .calcite-navbar-search.calcite-search-expander .esri-search {
+    &:focus .esri-search__container, &:hover .esri-search__container {
+      width: 200px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .calcite-map {
+    .esri-popup .esri-docked-bottom-center .esri-popup-main {
+      width: 100%;
+    }
+    .esri-widget--button {
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+    }
+    .esri-search {
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 400;
+      .esri-search__input {
+        font-size: 13px;
+        line-height: 1.5;
+        font-weight: 400;
+      }
+    }
+    .esri-widget .esri-menu li {
+      padding: .6em 1em;
+      font-size: 13px;
+    }
+  }
+}

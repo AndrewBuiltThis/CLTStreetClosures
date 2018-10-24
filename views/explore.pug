@@ -1,0 +1,79 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="This application allows organizations to manage their street closures.")
+    meta(name="keywords" content="clt,webapp, street, road, closures, charlotte, CDOT")
+    meta(name="robots" content="index,follow")
+    meta(name="geo.position" content="35;-80")
+    meta(name="geo.placename" content="Charlotte")
+    meta(name="geo.region" content="USA North Carolina")
+    meta(name="author" content="Andrew Valenski")
+    title CLT Street Closures and Detours
+    // Calcite Bootstrap
+    link(rel='stylesheet' href='/stylesheets/css/main.css')
+    style.
+      html,
+      body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      }
+  body
+    .container-fluid.px-0
+      nav.navbar.navbar-dark.bg-dark
+        a.navbar-brand(href='/')
+          img.d-inline-block.align-top(src='/images/icons/road.svg', width='30', height='30', alt='')
+          |   CLT Street Closures and Detours
+        form.form-inline
+          a.btn.btn-outline-info.my-2.my-sm-0.mx-1(role='button' href='/')
+            img.d-inline-block.align-top(src='/images/icons/map-marker-alt.svg', width='30', height='30', alt='This is a link to the CLT Street Closures Application', title='CLT Street Closures Application', style='max-height:30px;')
+          a.btn.btn-outline-info.my-2.my-sm-0.mx-1(role='button' href='/closures')
+            img.d-inline-block.align-top(src='/images/icons/search-location.svg', width='30', height='30', alt='This is a link to the CLT Street Closure Search Application', title='CLT Street Closures Search', style='max-height:30px;')
+    .container(style="margin-top:40px;margin-bottom:auto; background-color:rgba(0, 97, 155,0.1)")
+      .row.p-2(style="justify-content:center;text-align:center;")
+        h2
+          | Find Active Closures Near You
+        h5
+          | Use the search bar to look-up active closures in Charlotte. For more information about a closure, click on the plus (+) icon next to that record.
+    .container(style="margin-top:40px;margin-bottom:auto;")
+      table#exploreTable.table.table-striped.table-hover(style='background:#FFFFFF;')
+    script(src='/javascripts/core/moment.js', type='application/javascript')
+    script(src='/javascripts/core/jquery.min.js', type='application/javascript')
+    script(src='/javascripts/core/popper.min.js', type='application/javascript')
+    script(src='/javascripts/core/bootstrap.min.js', type='application/javascript')
+    script(src='/javascripts/footable/footable.js', type='application/javascript')
+    script(src='/javascripts/footable/footable.paginate.js', type='application/javascript')
+    script(src='/javascripts/footable/footable.export.js', type='application/javascript')
+    script.
+      jQuery(function($){
+        $('.table').footable({
+          "showToggle" : false,
+          "filtering": {
+            "enabled": true,
+            "placeholder":"Search for datasets",
+            "container": "#tableSearch",
+            "position": "center"
+          },
+          "paging": {
+            "enabled": true
+          },
+          "sorting": {
+            "enabled": true
+        },
+          "columns": [
+            {"name":"GlobalID", "title":"", "formatter" : function(value){
+              var cleanVal = value.replace('{','').replace('}','');
+              return "<a href='/closures/"+ cleanVal +"' target='_blank'><span class='fooicon fooicon-plus'></span></a>" }}
+            ,{"name":"BLOCKNM", "title":"Closure", style: {maxWidth:250, overflow:"hidden", textOverflow:"ellipsis", wordBreak:"keep-all", whiteSpace:"nowrap"}}
+            ,{"name":"ClosureType", "title":"Closure Type", "breakpoints": "xs sm md"}
+            ,{"name":"STARTDATE", "title":"Start Date", "type": "date"}
+            ,{"name":"ENDDATE", "title":"End Date", "type": "date"}
+            ,{"name":"LOCDESC", "title":"Details", "breakpoints": "xs sm"}
+        ],
+        "rows": $.get('/closureJSON')
+        });
+      });
+  

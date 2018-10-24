@@ -1,0 +1,676 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="This application allows organizations to manage their street closures.")
+    meta(name="keywords" content="clt,webapp, street, road, closures, charlotte, CDOT")
+    meta(name="robots" content="index,follow")
+    meta(name="geo.position" content="35;-80")
+    meta(name="geo.placename" content="Charlotte")
+    meta(name="geo.region" content="USA North Carolina")
+    meta(name="author" content="Andrew Valenski")
+    title CLT Street Closures and Detours
+    link(rel='stylesheet', href='https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.8.css')
+    link(rel='stylesheet', href='https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.8.css')
+    link(rel='stylesheet', href='https://js.arcgis.com/4.9/esri/css/main.css')
+    // Calcite-Web and Calcite-Maps don't play nice together. I am pulling the information for the toggle-switch from
+    // the Calcite-Web CSS and importing it directly here.
+    style.
+      html,
+      body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      }
+      .toggle-switch {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        tap-highlight-color: transparent
+      }
+
+      .toggle-switch-input[type] {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px
+      }
+
+      .toggle-switch-input[type]:hover + .toggle-switch-track {
+        border-color: #ccc;
+        background-color: #e7e7e7
+      }
+
+      .toggle-switch-input[type]:hover + .toggle-switch-track:after {
+        border-color: #3b8fc4;
+        box-shadow: 0 1px 2px 0 rgba(89, 89, 89, 0.2)
+      }
+
+      .toggle-switch-input[type]:active + .toggle-switch-track {
+        box-shadow: 0 0 4px 2px rgba(204, 204, 204, 0.9)
+      }
+
+      .toggle-switch-input[type]:active + .toggle-switch-track:after {
+        left: 1px;
+        border-color: #005e95;
+        box-shadow: 0 3px 1px 0 rgba(89, 89, 89, 0.2)
+      }
+
+      html[dir="rtl"] .toggle-switch-input[type]:active + .toggle-switch-track:after {
+        right: 1px;
+        left: auto
+      }
+
+      .toggle-switch-input[type]:checked + .toggle-switch-track {
+        border-color: #005e95;
+        background-color: #0079c1
+      }
+
+      .toggle-switch-input[type]:checked + .toggle-switch-track:after {
+        right: -1px;
+        left: auto;
+        border-color: #005e95;
+        box-shadow: 0 2px 1px 0 rgba(89, 89, 89, 0.2)
+      }
+
+      html[dir="rtl"] .toggle-switch-input[type]:checked + .toggle-switch-track:after {
+        left: -1px;
+        right: auto
+      }
+
+      .toggle-switch-input[type]:checked:active + .toggle-switch-track {
+        box-shadow: 0 0 4px 2px rgba(108, 180, 226, 0.9)
+      }
+
+      .toggle-switch-input[type]:checked:active + .toggle-switch-track:after {
+        right: 1px;
+        border-color: #005e95;
+        box-shadow: 0 3px 1px 0 rgba(89, 89, 89, 0.2)
+      }
+
+      html[dir="rtl"] .toggle-switch-input[type]:checked:active + .toggle-switch-track:after {
+        left: 1px;
+        right: auto
+      }
+
+      .toggle-switch-input[type]:focus + .toggle-switch-track {
+        box-shadow: 0 0 4px 2px rgba(204, 204, 204, 0.9)
+      }
+
+      .toggle-switch-input[type]:focus + .toggle-switch-track:after {
+        border-color: #3b8fc4
+      }
+
+      .toggle-switch-input[type]:checked:focus + .toggle-switch-track {
+        box-shadow: 0 0 4px 2px rgba(108, 180, 226, 0.9)
+      }
+
+      .toggle-switch-input[type]:checked:focus + .toggle-switch-track:after {
+        border-color: #005e95
+      }
+
+      .toggle-switch-label {
+        width: calc((100% - 3em) - .5em);
+        padding: 0 .1em;
+        vertical-align: top
+      }
+
+      .toggle-switch-track {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 36px;
+        height: 20px;
+        top: .05em;
+        background-color: #f4f4f4;
+        border-radius: 30px;
+        border: 1px solid #ccc;
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease
+      }  
+
+      .toggle-switch-track:after {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 18px;
+        height: 18px;
+        top: -1px;
+        left: -1px;
+        background-color: #fff;
+        border-radius: 30px;
+        border: 2px solid #959595;
+        box-shadow: 0 1px 1px 0 rgba(89, 89, 89, 0.2);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease
+      }
+
+      html[dir="rtl"] .toggle-switch-track:after {
+        right: -1px;
+        left: auto
+      }
+
+      @supports (-ms-ime-align:auto) {
+        .toggle-switch-track {
+          top: .4em
+        }
+      }
+
+      @supports (-moz-appearance:none) {
+        .toggle-switch-track {
+          top: .1em
+        }
+      }
+
+      @supports (-webkit-overflow-scrolling:touch) {
+        .toggle-switch-track {
+          top: .15em
+        }
+      }
+  // Begin Body of page
+  body.calcite-maps.calcite-nav-top
+
+    // Navbar
+    nav.navbar.calcite-navbar.navbar-fixed-top.calcite-text-light.calcite-bg-dark
+      // Dropdown Menu
+      .dropdown.calcite-dropdown.calcite-text-dark.calcite-bg-light(role='presentation')
+        a.dropdown-toggle(role='button', aria-haspopup='true', aria-expanded='false')
+          .calcite-dropdown-toggle
+            span.sr-only Toggle dropdown menu
+            span
+            span
+            span
+            span
+        ul.dropdown-menu
+          li
+            a#aboutButton(role='button', data-toggle='modal', data-target='#aboutModal', aria-haspopup='true')
+              span.glyphicon.glyphicon-info-sign
+              |  About
+          li
+            a#summaryButton(role='button', data-target='#panelSummary', aria-haspopup='true')
+              span.glyphicon.glyphicon-dashboard
+              |  Closure Summary
+          li
+            a#conditionsButton(role='button', data-target='#panelConditions', aria-haspopup='true')
+              span.glyphicon.glyphicon-road
+              |  Road Conditions
+          li
+            a#basemapButton(role='button', data-target='#panelBasemaps', aria-haspopup='true')
+              span.glyphicon.glyphicon-th-large
+              | Basemaps
+          li
+            a#contactButton(role='button', data-toggle='modal', data-target='#contactModal', aria-haspopup='true')
+              span.glyphicon.glyphicon.glyphicon-comment
+              |  Contact
+      // Title Section of Navbar
+      .calcite-title.calcite-overflow-hidden
+        span.calcite-title-main CLT Road Closures and Detours
+        span.calcite-title-divider.hidden-xs
+        a(href='/closures', target='_blank')
+          span.glyphicon.glyphicon-th-list(style='color:#FFF')
+        span.calcite-title-divider.hidden-xs
+        a(href='/admin', target='_blank')
+          span.glyphicon.glyphicon-briefcase(style='color:#FFF')
+        span.calcite-title-divider.hidden-xs
+        span.calcite-title-sub.hidden-xs Plan your commute with ease
+      // Search Widget in Nav
+      ul.nav.navbar-nav.calcite-nav
+        li
+          .calcite-navbar-search.calcite-search-expander
+            #searchWidgetDiv
+
+
+    // Map Section of the site
+    .calcite-map.calcite-map-absolute
+      #tabContainer.tab-content
+        #mapTab.tab-pane.fade.in.active(role='tabpanel')
+          #mapViewDiv
+
+
+    // Panel Section (Where the dropdown-buttons activate)
+    .calcite-panels.calcite-panels-right.calcite-text-light.calcite-bg-dark.panel-group
+
+      // Panel : Road Closure Summary Section
+      #panelSummary.panel.panel-map.collapse
+        #headingSettings.panel-heading
+          .panel-title
+            a.panel-toggle(role='button', data-toggle='collapse', href='#collapseSettings', data-parent='#panelAccordion', aria-expanded='true', aria-controls='collapseSettings')
+              span.glyphicon.glyphicon-cog(aria-hidden='true')
+              span.panel-label Current Closures
+            a.panel-close(role='button', data-toggle='collapse', data-target='#panelSummary')
+              span.esri-icon.esri-icon-close(aria-hidden='true')
+        #collapseSettings.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingSettings')
+          .panel-body
+            p.lead Coming Soon!
+
+      // Panel : Current Road Conditions Section
+      #panelConditions.panel.panel-map.collapse
+        #headingSettings.panel-heading
+          .panel-title
+            a.panel-toggle(role='button', data-toggle='collapse', href='#collapseSettings', data-parent='#panelAccordion', aria-expanded='true', aria-controls='collapseSettings')
+              span.glyphicon.glyphicon-cog(aria-hidden='true')
+              span.panel-label Current Road Conditions
+            a.panel-close(role='button', data-toggle='collapse', data-target='#panelConditions')
+              span.esri-icon.esri-icon-close(aria-hidden='true')
+        #collapseSettings.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingSettings')
+          .panel-body
+            p(style="text-align:center;")
+              | Toggle the settings below for live driving conditions in Charlotte
+            label.toggle-switch.modifier-class
+              input#liveTrafficFeed.toggle-switch-input(type='checkbox')
+              span.toggle-switch-track(style="margin-right:15px;")
+              span.toggle-switch-label.lead Live Traffic 
+            br
+            label.toggle-switch.modifier-class
+              input#esriAccidentFeed.toggle-switch-input(type='checkbox')
+              span.toggle-switch-track(style="margin-right:15px;")
+              span.toggle-switch-label.lead Roadway Hazards
+            br
+            label.toggle-switch.modifier-class
+              input#accidentFeed.toggle-switch-input(type='checkbox')
+              span#accidentFeedSpan.toggle-switch-track(style="margin-right:15px;")
+              span.toggle-switch-label.lead Accidents / Incidents
+
+      // Panel : Basemap Toggle Section
+      #panelBasemaps.panel.collapse
+        #headingBasemaps.panel-heading(role='tab')
+          .panel-title
+            a.panel-toggle.collapsed(role='button', data-toggle='collapse', href='#collapseBasemaps', aria-expanded='false', aria-controls='collapseBasemaps')
+              span.glyphicon.glyphicon-th-large(aria-hidden='true')
+              span.panel-label Basemap
+            a.panel-close(role='button', data-toggle='collapse', data-target='#panelBasemaps')
+              span.esri-icon.esri-icon-close(aria-hidden='true')
+        #collapseBasemaps.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingBasemaps')
+          .panel-body
+            #basemapPanelDiv
+
+
+    // Create our Modals
+    // Modal : About 
+    #aboutModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='aboutModalTitle', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h3#aboutModalTitle.modal-title Welcome to CLT Road Closures and Detours
+          .modal-body
+            p.lead
+              | This application allows residents, vistors and busineses get the most out of the travel in the Queen City.
+            p
+              | It's no secret that Charlotte is a changing, growing and historic City. While these traits make Charlotte the City that we all know and love, it does mean that the folks who work for the Charlotte Department of Transportation (CDOT) are kept quite busy.
+            p
+              | Between the ongoing construction projects, continued efforts to upgrade the City's existing infrastructure and the nonstop event schedule, roads will ocassionally need to be partially or completely closed. 
+              br
+              br
+              | To best serve the City of Charlotte, we want to make this information readily available so you can 
+              b make better decisions,
+              b avoid frustration
+              |  and 
+              b get your questions answered
+              | .
+            p
+              | Thank you for visiting our application and be sure to check out its sister application, 
+              a(href='', target='') CLT Closure Reporter
+              | , for more information.
+          .modal-footer
+            button.btn.btn-primary(type='button', data-dismiss='modal') I'm Ready to Explore
+
+    // Modal : Contact
+    #contactModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='contactModalTitle', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h3#contactModalTitle.modal-title We'd Love to Hear From You
+          .modal-body
+            p.lead
+              | Looking for answers? Have some suggestions? Need some help? We've got you covered.
+            p
+              | You can reach out to the City of Charlotte's Department of Transportation in many ways, each of which is a great option.
+          .modal-footer
+            button.btn.btn-primary(type='button', data-dismiss='modal') Thanks! I'm Done Now
+
+  
+    // Javascript Section
+    // The dojo-config section allows us to use the modular system of JS (i.e. require statements)
+    script(type='text/javascript').
+      var dojoConfig = {
+      packages: [{
+      name: "bootstrap",
+      location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
+      },
+      {
+      name: "calcite-maps",
+      location: "https://esri.github.io/calcite-maps/dist/js/dojo"
+      }]
+      };
+
+    // Leverage the Esri JS API
+    script(src='https://js.arcgis.com/4.9/')
+
+    // Define our Web Map / App properties
+    script.
+      var app;
+      require([
+      // Esri
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/PopupTemplate",
+      "esri/layers/FeatureLayer",
+      "esri/layers/GeoRSSLayer",
+      "esri/layers/MapImageLayer",
+      "esri/widgets/Search",
+      "esri/widgets/BasemapGallery",
+      "esri/widgets/Home",
+      "esri/widgets/Zoom",
+      "esri/widgets/Expand",
+
+      // Calcite Maps
+      "calcite-maps/calcitemaps-v0.8",
+
+      // Calcite Maps ArcGIS Support
+      "calcite-maps/calcitemaps-arcgis-support-v0.8",
+
+      // Bootstrap
+      "bootstrap/Collapse",
+      "bootstrap/Dropdown",
+      "bootstrap/Tab",
+      "bootstrap/Modal",
+
+      // Can use @dojo shim for Array.from for IE11
+      "@dojo/framework/shim/array"
+      ], function(Map, MapView, 
+      PopupTemplate, FeatureLayer, GeoRSSLayer, MapImageLayer,
+      Search, Basemaps, Home, Zoom, Expand,
+      CalciteMaps, CalciteMapsArcGIS) {
+      
+      //------------------ Application Setup Section ---------------------//
+        // First we are creating our app object (which we'll configure after)
+          app = {
+            center: [-80.84, 35.225],
+            scale: 100000,
+            basemap: "gray",
+            viewPadding: {
+              top: 50,
+              bottom: 0
+            },
+            uiComponents: [],
+            mapView: null,
+            containerMap: "mapViewDiv",
+            searchWidget: null
+          };
+
+        // Next we're creating our Map object (this object is kind of like our canvas within the app)
+          const map = new Map({
+            basemap: app.basemap
+          });
+
+        // Next we're populating the mapView property of our app. The mapView is the actual thing we experience
+        //   within the application.
+          app.mapView = new MapView({
+            container: app.containerMap,
+            map: map,
+            center: app.center,
+            scale: app.scale,
+            padding: app.viewPadding,
+            ui: {
+              components: app.uiComponents
+            }
+          });
+      
+      //------------------- Layer Section -----------------------------------//
+        // Closures Layer
+          // First we're going to defining the Popup Template for the Layer
+            const closurePopupTemplate = {
+              title: "{ClosureType} Closure on {BLOCKNM}",
+              content: [
+                {
+                  type: "text",
+                  text: "The closure {LOCDEC} is currently {ACTIVE:activeEvaluation}." + " The closure was communicated on {DateCommunicated} and starts on <b>{STARTDATE} at {StartHour} {StartAMPM}</b> and continues until <b> {ENDDATE} at {EndHour} {EndAMPM}</b>.<br /><br /> This will affect traffic traveling {DIRECTION}" + " {ALTROUTE}"+" {CATS}" + " More information on this closure can be found below."
+                },
+                {
+                  type: "fields",
+                  fieldInfos: [
+                    {
+                      fieldName: "ResponsibleDepartment",
+                      label: "Responsible Department: ",
+                      visible: true
+                    },
+                    {
+                      fieldName: "COMMENT",
+                      label: "Additional Closure Notes: ",
+                      visible: true
+                    },
+                    {
+                      fieldName: "CONTACT",
+                      label: "For more info, contact",
+                      visible: true
+                    }
+                  ]
+                }
+              ]
+            };
+          // We are creating a function to evaluate whether or not a closure is active or not
+          //   and reformating the result (bolding and lowercasing) so it reads nicer in the popup.
+            activeEvaluation = function(value){
+              if (value.toUpperCase()=='YES'){
+                return '<b>active</b>';
+              }
+              else {
+                return '<b>inactive</b>'
+              }
+            };
+          // Now we're actually building the Feature Layer and setting its properties 
+            const closureFeatureLayer = new FeatureLayer({
+              url: "https://gis.charlottenc.gov/arcgis/rest/services/CDOT/StreetClosuresAndDetours/MapServer/0",
+              outFields: ["*"],
+              popupTemplate: closurePopupTemplate
+            });
+          // Finally, we're adding our configured Feature Layer to the Map
+            map.add(closureFeatureLayer);
+
+        // Detours Layer
+          // First we're going to defining the Popup Template for the Layer
+            const detourPopupTemplate = {
+              title: "Detour at {BLOCKNM}",
+              content: [
+                {
+                  type: "text",
+                  text: "The detour at {BLOCKNM} starts at <b>{STARTDATE}</b> and will continue until <b>{ENDDATE}</b>." + " More information on the detour can be found below."
+                },
+                {
+                  type: "fields",
+                  fieldInfos: [
+                    {
+                      fieldName: "COMMENT",
+                      label: "Detour Notes:",
+                      visible: true
+                    }
+                  ]
+                }
+              ]
+            };
+          // Now we're actually building the Feature Layer and setting its properties 
+            const detourFeatureLayer = new FeatureLayer({
+              url: "https://gis.charlottenc.gov/arcgis/rest/services/CDOT/StreetClosuresAndDetours/MapServer/1",
+              outFields: ["*"],
+              popupTemplate: detourPopupTemplate
+            });
+          // Finally, we're adding our configured Feature Layer to the Map
+            map.add(detourFeatureLayer);
+
+        // Traffic Conditions Layer [Hidden on Load]
+          // First we're going to defining the Popup Template for the Layer
+            const incidentsPopupTemplate = {
+              title: "{incidenttype} at {location}",
+                content: [
+                  {
+                    type: "fields",
+                    fieldInfos: [
+                      {
+                        fieldName: "fulldescription",
+                        label: "Incident Description:"
+                      }
+                    ]
+                  }
+                ]
+              };
+            // Now we're actually building the Feature Layer and setting its properties 
+              const incidentsFeatureLayer = new FeatureLayer({
+                url: "https://utility.arcgis.com/usrsvcs/servers/8cd01a89cdc74c87893127f4438844b5/rest/services/World/Traffic/MapServer/4",
+                popupTemplate: incidentsPopupTemplate,
+                visible: false
+              });
+            // Finally, we're adding out configured Feature Layer to the Map (but since its visibile property is false, we don't see it)
+              map.add(incidentsFeatureLayer);
+
+        // Road Incidents Layer [Hidden on Load]
+          // This MapImageLayer is only for visual interpretation and won't have popups, so the first step is to build
+          //   the layer (and we will hide it by default)
+            const trafficConditionsLayer = new MapImageLayer({
+              url: "http://utility.arcgis.com/usrsvcs/servers/8cd01a89cdc74c87893127f4438844b5/rest/services/World/Traffic/MapServer",
+              visible: false
+            });
+          // Then we're going to add the configured Map Image Layer to the Map (but since its visible property is false, we don't see it)
+            map.add(trafficConditionsLayer);
+
+        // Accidents Layer [Hidden on Load]
+          // GeoRSS Feed layers are read as XML files and their properties are already configured by the provider, so 
+          //    we will start by building the GeoRSS Layer
+            const accidentRSSLayer = new GeoRSSLayer({
+            url: "http://maps.cmpd.org/datafeeds/accidentsgeorss.ashx",
+            visible: false
+            });
+          // Then we're going to add the configured GeoRSS Layer to the Map (but since its visible property is false, we don't see it)
+            map.add(accidentRSSLayer);      
+
+      //-------------------- Widget Section ---------------------------------------//
+        // Search Widget
+          // First we're going to create the Search widget
+            app.searchWidget = new Search({
+              view: app.mapView
+            }, "searchWidgetDiv");
+          // Then we are going to set an expand event on the widget when it is clicked
+            CalciteMapsArcGIS.setSearchExpandEvents(app.searchWidget);
+
+      // Basemap Toggle Widget
+        // First we're going to create the Basemap widget
+          app.basemapWidget = new Basemaps({
+            view: app.mapView,
+            container: "basemapPanelDiv"
+          });
+
+      // Home Widget
+        // First we're going to create the Home widget
+          const home = new Home({
+            view: app.mapView
+          });
+        // Then we're going to add it to our mapView in the top-left corner
+          app.mapView.ui.add(home, "top-left");
+        
+      // Zoom Widget
+        // First we're going to create the Zoom widget
+          const zoom = new Zoom({
+            view: app.mapView
+          });
+        // Then we're going to add it to our mapView in the top-left corner. Since
+        //    there's already a widget there, this will be placed below it.
+          app.mapView.ui.add(zoom, "top-left");
+
+      // Expand Widget
+        // First we're going to create container for the Expand widget by making a 
+        //    html div object and styling it. 
+          const sampleInstructions = document.createElement("div");
+            sampleInstructions.style.padding = "10px";
+            sampleInstructions.style.backgroundColor = "white";
+            sampleInstructions.style.width = "300px";
+            sampleInstructions.innerHTML = [
+              "<b>Hello, Friend! I'm here to help.</b> </br> </br> This application is intended for residents, vistors and organizations to get accurate, accessable and useful information about Road Closures and Detours in Charlotte, North Carolina.<br /> <br /> The app is fairly straight-forward, allowing you to visualize the current road closures and detours in your area, as well as get some information regarding those activities by clicking on the road or closure you are interested in. <br /> <br /> You can also get information on the current traffic conditions in Charlotte, which might be useful for planning purposes as well. <br /> <br /> This application is complimented by its sister application which allows more detailed searching and information, which can be found <a href='' target=''>right here!</a> <br /> <br /> If you have any questions, please don't hesitate to reach out to the Charlotte Department of Transportation "
+            ].join(" ");
+        // Now that the container (div) is created, we want to associate that HTML object with an
+        //    Expand widget which will show that HTML object.
+          const instructionsExpand = new Expand({
+            expandIconClass: "esri-icon-question",
+            expandTooltip: "What is this app?",
+            view: app.mapView,
+            content: sampleInstructions
+          });
+        // Finally, we're going to add the Expand Widget to the top-left corner. Since
+        //    there're already elements there, this will be placed below them.
+          app.mapView.ui.add(instructionsExpand, "top-left");
+
+      //----------------Toggle Layer Section ----------------------------------//
+        // Here we are going to associate the visibility of our hidden layers with
+        //    the state of a checkbox HTML element within the application. When the 
+        //     checkbox is checked, the layer will be visible. When unchecked, the
+        //     layer will be hidden
+
+          // Associate Layer's Visibility State with the toggle
+            var accidentsLayerToggle = document.getElementById("accidentFeed");
+          // Listen to the change event for the checkbox
+            accidentsLayerToggle.addEventListener("change", function () {
+              // When the checkbox is checked (true), set the layer's visibility to true
+              accidentRSSLayer.visible = accidentsLayerToggle.checked;
+            });
+
+        var incidentsLayerToggle = document.getElementById("esriAccidentFeed");
+        incidentsLayerToggle.addEventListener("change", function () {
+          incidentsFeatureLayer.visible = incidentsLayerToggle.checked;
+        });
+
+        var trafficLayerToggle = document.getElementById("liveTrafficFeed");
+        trafficLayerToggle.addEventListener("change", function () {
+          trafficConditionsLayer.visible = trafficLayerToggle.checked;
+        });
+    
+      // Define padding rules for the navbar and widgets
+        // Set view padding for widgets based on navbar position
+          function setViewPadding(layout) {
+            let padding, uiPadding;       
+            // Top
+            if (layout === "calcite-nav-top") {
+              padding = {
+                padding: {
+                  top: 50,
+                  bottom: 0
+                }
+              };
+              uiPadding = {
+                padding: {
+                  top: 15,
+                  right: 15,
+                  bottom: 30,
+                  left: 15
+                }
+              };
+            } 
+            // Bottom
+            else { 
+              padding = {
+                padding: {
+                  top: 0,
+                  bottom: 50
+                }
+              };
+              uiPadding = {
+                padding: {
+                  top: 30,
+                  right: 15,
+                  bottom: 15,
+                  left: 15
+                }
+              };
+             }
+            app.mapView.set(padding);
+            app.mapView.ui.set(uiPadding);
+          }
+      });

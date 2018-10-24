@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Draw polyline - 4.9</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/views/2d/draw/Draw",
+      "esri/Graphic",
+      "esri/geometry/geometryEngine"
+    ], function(
+      Map, MapView, Draw, Graphic, geometryEngine
+    ) {
+      const map = new Map({
+        basemap: "gray"
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        zoom: 16,
+        center: [18.06, 59.34]
+      });
+
+      // add the button for the draw tool
+      view.ui.add("line-button", "top-left");
+      
+      // add the button for the draw tool
+      view.ui.add("reset-button", "top-left");
+
+      const draw = new Draw({
+        view: view
+      });
+
+      // draw polyline button
+      document.getElementById("line-button").onclick = function() {
+        view.graphics.removeAll();
+
+        // creates and returns an instance of PolyLineDrawAction
+        const action = draw.create("polyline");
+
+        // focus the view to activate keyboard shortcuts for sketching
+        view.focus();
+
+        // listen polylineDrawAction events to give immediate visual feedback
+        // to users as the line is being drawn on the view.
+        action.on("vertex-add", updateVertices);
+        action.on("cursor-update", updateVertices);
+        action.on("draw-complete", completeVertices);
+      }
+
+      // Checks if the last vertex is making the line intersect itself.
+      function updateVertices(event) {
+        // create a polyline from returned vertices
+        const result = createGraphic(event);
+      }
+
+      // create a new graphic presenting the polyline that is being drawn on the view
+      function createGraphic(event) {
+        const vertices = event.vertices;
+        view.graphics.removeAll();
+
+        // a graphic representing the polyline that is being drawn
+        const graphic = new Graphic({
+          geometry: {
+            type: "polyline",
+            paths: vertices,
+            spatialReference: view.spatialReference
+          },
+          symbol: {
+            type: "simple-line", // autocasts as new SimpleFillSymbol
+            color: [4, 90, 141],
+            width: 4,
+            cap: "round",
+            join: "round"
+          }
+        });
+
+          view.graphics.add(graphic);
+          //console.log(graphic);
+      }
+      
+            // Checks if the last vertex is making the line intersect itself.
+      function completeVertices(event) {
+        // create a polyline from returned vertices
+        const result = completeGraphic(event);
+      }
+
+      // create a new graphic presenting the polyline that is being drawn on the view
+      function completeGraphic(event) {
+        const vertices = event.vertices;
+        view.graphics.removeAll();
+
+        // a graphic representing the polyline that is being drawn
+        const graphic = new Graphic({
+          geometry: {
+            type: "polyline",
+            paths: vertices,
+            spatialReference: view.spatialReference
+          },
+          symbol: {
+            type: "simple-line", // autocasts as new SimpleFillSymbol
+            color: [4, 90, 141],
+            width: 4,
+            cap: "round",
+            join: "round"
+          }
+        });
+
+          view.graphics.add(graphic);
+          console.log(graphic);
+      }
+      
+    // reset button
+      document.getElementById("reset-button").onclick = function () {
+        view.graphics.removeAll();
+        };
+      
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv">
+    <div id="line-button" class="esri-widget esri-widget--button esri-interactive"
+      title="Draw polyline">
+      <span class="esri-icon-polyline"></span>
+    </div>
+    <div id="reset-button" class="esri-widget esri-widget--button esri-interactive" title="Clear Drawing">
+      <span class="esri-icon-trash"></span>
+    </div>
+  </div>
+</body>
+
+</html>
